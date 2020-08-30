@@ -6,4 +6,7 @@ export const En = {
     home: "Home",
     about: "About",
   },
+  login: {
+    backToHome: "Back To Home",
+  },
 };

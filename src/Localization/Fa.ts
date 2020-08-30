@@ -6,4 +6,7 @@ export const Fa = {
     home: "صفحه اصلی",
     about: "درباره",
   },
+  login: {
+    backToHome: "بازگشت به صفحه اصلی",
+  },
 };
