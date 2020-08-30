@@ -4,7 +4,7 @@ import { RenderMessage } from "./Localization/RenderMessage";
 export const Path: RouteType = [
   {
     text: RenderMessage().path.home,
-    src: "/",
+    src: "/home",
     key: "Home",
   },
   {

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { RenderMessage } from "../../../Localization/RenderMessage";
+import { useHistory } from "react-router-dom";
 
 export type RouteType = {
   src: string;
@@ -11,19 +12,23 @@ export type RouteType = {
 
 interface IHeaderProps {
   Route: RouteType;
+  history?: any;
 }
 
 export const Header = (props: IHeaderProps) => {
+  const history = useHistory();
   const renderNavItem = () =>
     props.Route.map((item) => (
-      <span key={item.key}>
+      <div key={item.key}>
         <Link to={item.src}>{item.text}</Link>
-      </span>
+      </div>
     ));
   return (
     <header>
       <div>
-        <button>{RenderMessage()?.general.account}</button>
+        <button onClick={() => history.push("/login")}>
+          {RenderMessage().general.account}
+        </button>
       </div>
       <nav>{renderNavItem()}</nav>
     </header>

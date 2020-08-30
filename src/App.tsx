@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import { Header } from "./Layouts/Landing/Header/Header";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Path } from "./Path";
+import { Body } from "./Layouts/Landing/Body/Body";
+import { LoginLayout } from "./Layouts/LoginLayout/LoginLayout";
 
 const store = require("store");
 
@@ -15,12 +17,11 @@ function App(props: any) {
     <React.Fragment>
       <Router>
         <div className="App" dir={store.get("lang") === "fa" ? "rtl" : "ltr"}>
-          <Header Route={Path} />
+          <Body />
         </div>
-        <Switch>
-          <Route key={"home"} path="/home/:lang" exact />
-          <Route key={"about"} path="/about/:lang" />
-        </Switch>
+      </Router>
+      <Router>
+        <LoginLayout />
       </Router>
     </React.Fragment>
   );
