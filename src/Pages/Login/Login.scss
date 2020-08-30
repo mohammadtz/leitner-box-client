@@ -1,8 +1,59 @@
+@import "../../_variables";
+
+$login-container-width: 1000px;
+$login-container-height: 600px;
+
 .login {
-  background-color: yellowgreen;
+  background-color: rgb(230, 230, 230);
   position: absolute;
   height: 100vh;
   width: 100vw;
   top: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__container {
+    position: relative;
+    padding: 10px;
+    width: $login-container-width;
+    height: $login-container-height;
+    &__inner {
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    &__outter {
+      position: absolute;
+      background-color: $base-light-blue;
+      top: 0;
+      left: 0;
+      right: calc(#{$login-container-width}/ 2);
+      bottom: 0;
+    }
+  }
+  button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: $base-light-blue;
+    transition: 0.3s all;
+    padding-inline-start: 20px;
+    span {
+      font-weight: bold;
+      font-size: 16px;
+      margin-inline-start: 10px;
+    }
+    &:hover {
+      padding-inline-start: 10px;
+      color: $base-dark-blue;
+    }
+  }
 }
