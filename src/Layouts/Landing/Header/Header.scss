@@ -1,0 +1,22 @@
+@import "./../../../variables";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+  padding: 0 10%;
+  nav {
+    flex: 2;
+    text-align: end;
+    span {
+      margin: 20px;
+      a {
+        padding: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        color: $base-dark-color;
+      }
+    }
+  }
+}

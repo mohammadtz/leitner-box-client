@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { Header } from "./Layouts/Landing/Header/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Path } from "./Path";
 
-function App() {
+const store = require("store");
+
+function App(props: any) {
+  useEffect(() => {
+    console.log(props.match);
+  });
+  store.set("lang", "fa");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Router>
+        <div className="App" dir={store.get("lang") === "fa" ? "rtl" : "ltr"}>
+          <Header Route={Path} />
+        </div>
+        <Switch>
+          <Route key={"home"} path="/home/:lang" exact />
+          <Route key={"about"} path="/about/:lang" />
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 
