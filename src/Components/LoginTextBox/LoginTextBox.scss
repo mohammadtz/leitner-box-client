@@ -1,0 +1,45 @@
+$background-text-box: #e4e4e4;
+$color-border-text-box: #c3c3c3;
+$placeholder-color: #909090;
+$color-focus-border: #5a98d1;
+$input-color: #505050;
+$icon-color: #858585;
+
+.login-textbox {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-border-text-box;
+  border-collapse: collapse;
+  border-radius: 5px;
+  background-color: $background-text-box;
+  padding: 5px;
+  margin: 10px 0;
+  &__icon-container {
+    height: 100%;
+    width: 80px;
+    flex: 1;
+    border-inline-end: 1px solid $color-border-text-box;
+    i {
+      color: $icon-color;
+    }
+  }
+  &__eye-container {
+    cursor: pointer;
+    width: 30px;
+    i {
+      color: $icon-color;
+    }
+  }
+  input {
+    flex: 6;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-align: center;
+    color: $input-color;
+    &::placeholder {
+      color: $placeholder-color;
+      text-align: center;
+    }
+  }
+}

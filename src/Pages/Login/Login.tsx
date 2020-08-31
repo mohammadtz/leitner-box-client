@@ -10,7 +10,7 @@ export const Login = () => {
   return (
     <div className="login">
       <LoginContainer />
-      <button onClick={() => history.push("/home")}>
+      <button className="back-to-home" onClick={() => history.push("/home")}>
         <i
           className={
             getOptions("lang") === "fa"
@@ -18,7 +18,7 @@ export const Login = () => {
               : "fa fa-arrow-left"
           }
         ></i>
-        <span>{RenderMessage().login.backToHome}</span>
+        <span>{RenderMessage().signIn.backToHome}</span>
       </button>
     </div>
   );

@@ -25,17 +25,36 @@ $login-container-height: 600px;
       height: 100%;
       display: flex;
       justify-content: space-around;
+      .login-parent {
+        flex: 1;
+        padding: 50px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h2 {
+          margin-bottom: 20px;
+        }
+        .submit {
+          margin-top: 20px;
+        }
+      }
+      .login-card {
+        @extend .login-parent;
+      }
+      .sign-up-card {
+        @extend .login-parent;
+      }
     }
     &__outter {
       position: absolute;
       background-color: $base-light-blue;
       top: 0;
       left: 0;
-      right: calc(#{$login-container-width}/ 2);
+      right: calc((#{$login-container-width}/ 2));
       bottom: 0;
     }
   }
-  button {
+  .back-to-home {
     position: absolute;
     top: 10px;
     right: 20px;

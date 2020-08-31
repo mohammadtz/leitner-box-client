@@ -1,5 +1,5 @@
 import React from "react";
 
 export const SignUpCard = () => {
-  return <div>SignUpCard</div>;
+  return <div className="sign-up-card">SignUpCard</div>;
 };
