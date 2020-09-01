@@ -13,4 +13,7 @@ export const En = {
     username: "Username",
     password: "Password",
   },
+  signUp: {
+    title: "Sign Up",
+  },
 };

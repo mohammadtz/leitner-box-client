@@ -39,7 +39,7 @@ export const LoginCard = () => {
         onChange={(e) => handleChange("password", e.target.value)}
       />
       <button onClick={() => console.log(value)} className="submit">
-        Submit
+        {RenderMessage().signIn.title}
       </button>
     </div>
   );

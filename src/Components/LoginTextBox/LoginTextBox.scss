@@ -1,4 +1,4 @@
-$background-text-box: #e4e4e4;
+$background-text-box: #f0f0f0;
 $color-border-text-box: #c3c3c3;
 $placeholder-color: #909090;
 $color-focus-border: #5a98d1;
@@ -14,6 +14,10 @@ $icon-color: #858585;
   background-color: $background-text-box;
   padding: 5px;
   margin: 10px 0;
+  transition: 0.2s all;
+  &:hover {
+    border: 1px solid #5a98d1;
+  }
   &__icon-container {
     height: 100%;
     width: 80px;

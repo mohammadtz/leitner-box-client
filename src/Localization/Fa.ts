@@ -13,4 +13,7 @@ export const Fa = {
     username: "نام کاربری",
     password: "کلمه عبور",
   },
+  signUp: {
+    title: "ثبت نام در سایت",
+  },
 };
