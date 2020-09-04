@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
+import { motion } from "framer-motion";
 
 export const LoginCard = () => {
   const [value, setValue] = useState({ username: "", password: "" });
@@ -19,7 +20,12 @@ export const LoginCard = () => {
     setValue(val);
   };
   return (
-    <div className="login-card">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="login-card"
+    >
       <h2>{RenderMessage().signIn.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
@@ -28,6 +34,7 @@ export const LoginCard = () => {
         )}
         value={value.username}
         onChange={(e) => handleChange("username", e.target.value)}
+        name={"username"}
       />
       <LoginTextBox
         icon="fa fa-key"
@@ -37,10 +44,11 @@ export const LoginCard = () => {
         passMode={true}
         value={value.password}
         onChange={(e) => handleChange("password", e.target.value)}
+        name={"password"}
       />
       <button onClick={() => console.log(value)} className="submit">
         {RenderMessage().signIn.title}
       </button>
-    </div>
+    </motion.div>
   );
 };

@@ -7,6 +7,7 @@ interface ILoginTextBox {
   passMode?: boolean;
   value?: string | number | readonly string[];
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name?: string;
 }
 
 export const LoginTextBox = (props: ILoginTextBox) => {
@@ -30,6 +31,7 @@ export const LoginTextBox = (props: ILoginTextBox) => {
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
+        name={props.name}
       />
       {renderShowPassword()}
     </div>

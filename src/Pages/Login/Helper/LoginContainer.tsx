@@ -2,9 +2,61 @@ import React, { useState } from "react";
 import { LoginCard } from "./LoginCard";
 import { SignUpCard } from "./SignUpCard";
 import { RenderMessage } from "../../../Localization/RenderMessage";
+import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
+import { getOptions } from "../../../Helper";
 
-export const LoginContainer = () => {
-  const [login, setLogin] = useState(true);
+const store = require("store");
+
+export const LoginContainer = (props: { type: number }) => {
+  store.set("loginType", props.type);
+
+  const [login, setLogin] = useState(
+    getOptions("loginType") === 1 ? true : false
+  );
+
+  const history = useHistory();
+
+  const RenderSideLogin = () => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <button
+          className="submit login-button"
+          onClick={() => {
+            setLogin(false);
+            history.push("/login/2");
+          }}
+        >
+          {RenderMessage().signUp.title}
+        </button>
+      </motion.div>
+    );
+  };
+
+  const RenderSideSignUp = () => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <button
+          className="submit login-button"
+          onClick={() => {
+            setLogin(true);
+            history.push("/login/1");
+          }}
+        >
+          {RenderMessage().signIn.title}
+        </button>
+      </motion.div>
+    );
+  };
+
   return (
     <div className="login__container">
       <div className="login__container__inner">
@@ -15,23 +67,18 @@ export const LoginContainer = () => {
           {!login ? <SignUpCard /> : null}
         </div>
       </div>
-      <div className="login__container__outter">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className={
+          login
+            ? "login__container__outter-login"
+            : "login__container__outter-sign-up"
+        }
+      >
         {login ? <RenderSideLogin /> : <RenderSideSignUp />}
-      </div>
+      </motion.div>
     </div>
   );
-};
-
-export const RenderSideLogin = () => {
-  return (
-    <div>
-      <button className="submit login-button">
-        {RenderMessage().signUp.title}
-      </button>
-    </div>
-  );
-};
-
-export const RenderSideSignUp = () => {
-  return <div></div>;
 };

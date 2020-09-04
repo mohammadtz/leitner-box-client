@@ -5,11 +5,11 @@ import { RenderMessage } from "../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
 import { getOptions } from "../../Helper";
 
-export const Login = () => {
+export const Login = (props: any) => {
   const history = useHistory();
   return (
     <div className="login">
-      <LoginContainer />
+      <LoginContainer type={Number(props.match.params.type)} />
       <button className="back-to-home" onClick={() => history.push("/home")}>
         <i
           className={

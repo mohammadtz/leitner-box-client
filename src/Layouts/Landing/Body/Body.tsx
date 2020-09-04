@@ -13,7 +13,7 @@ export const Body = () => {
         <Switch>
           <Route key={"home"} path="/home/:lang?" exact component={Home} />
           <Route key={"about"} path="/about/:lang?" exact component={About} />
-          <Route key={"login"} path="/login/:lang?" exact component={Login} />
+          <Route key={"login"} path="/login/:type?" exact component={Login} />
         </Switch>
       </React.Fragment>
     </div>
