@@ -15,5 +15,7 @@ export const Fa = {
   },
   signUp: {
     title: "ثبت نام در سایت",
+    reTypePass: "تکرار کلمه عبور",
+    email: "ایمیل",
   },
 };

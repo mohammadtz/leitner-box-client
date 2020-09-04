@@ -15,5 +15,7 @@ export const En = {
   },
   signUp: {
     title: "Sign Up",
+    reTypePass: "Retype Password",
+    email: "Email",
   },
 };
