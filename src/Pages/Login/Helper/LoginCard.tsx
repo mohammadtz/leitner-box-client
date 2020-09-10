@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
 export const LoginCard = () => {
+  const history = useHistory();
   const [value, setValue] = useState({ username: "", password: "" });
   const handleChange = (name: string, value1: any) => {
     let val = { ...value };
@@ -29,7 +31,8 @@ export const LoginCard = () => {
       <h2>{RenderMessage().signIn.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signIn.username
         )}
         value={value.username}
@@ -38,7 +41,8 @@ export const LoginCard = () => {
       />
       <LoginTextBox
         icon="fa fa-key"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signIn.password
         )}
         passMode={true}
@@ -46,7 +50,7 @@ export const LoginCard = () => {
         onChange={(e) => handleChange("password", e.target.value)}
         name={"password"}
       />
-      <button onClick={() => console.log(value)} className="submit">
+      <button onClick={() => history.push("/main/box")} className="submit">
         {RenderMessage().signIn.title}
       </button>
     </motion.div>

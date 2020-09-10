@@ -4,6 +4,7 @@ import "./Body.scss";
 import { Home, About, Login } from "../../../Pages";
 import { Header } from "../Header/Header";
 import { Path } from "../../../Path";
+import { Main } from "../../Main/Main";
 
 export const Body = () => {
   return (
@@ -14,6 +15,7 @@ export const Body = () => {
           <Route key={"home"} path="/home/:lang?" exact component={Home} />
           <Route key={"about"} path="/about/:lang?" exact component={About} />
           <Route key={"login"} path="/login/:type?" exact component={Login} />
+          <Route key={"main"} path="/main/:type" exact component={Main} />
         </Switch>
       </React.Fragment>
     </div>

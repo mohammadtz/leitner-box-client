@@ -1,0 +1,36 @@
+{
+  "general": {
+    "account": "Account",
+    "placeholder": "Please Enter {0}"
+  },
+  "path": {
+    "home": "Home",
+    "about": "About"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "backToHome": "Back To Home",
+    "username": "Username",
+    "password": "Password"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "reTypePass": "Retype Password",
+    "email": "Email"
+  },
+  "main": {
+    "menu": {
+      "boxes": "Boxes",
+      "account": "Account",
+      "createCard": "Create Card",
+      "cardList": "Card List",
+      "exit": "Exit"
+    }
+  },
+  "pages": {
+    "box": {
+      "box_number": "Box {0}",
+      "card_count": "Card Count: "
+    }
+  }
+}

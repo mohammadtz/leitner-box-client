@@ -37,7 +37,8 @@ export const SignUpCard = () => {
       <h2>{RenderMessage().signUp.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signIn.username
         )}
         value={value.username}
@@ -46,7 +47,8 @@ export const SignUpCard = () => {
       />
       <LoginTextBox
         icon="fa fa-envelope"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signUp.email
         )}
         value={value.username}
@@ -55,7 +57,8 @@ export const SignUpCard = () => {
       />
       <LoginTextBox
         icon="fa fa-key"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signIn.password
         )}
         passMode={true}
@@ -65,7 +68,8 @@ export const SignUpCard = () => {
       />
       <LoginTextBox
         icon="fa fa-key"
-        placeholder={RenderMessage().general.placeholder(
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
           RenderMessage().signUp.reTypePass
         )}
         passMode={true}

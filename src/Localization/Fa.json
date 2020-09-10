@@ -1,0 +1,36 @@
+{
+  "general": {
+    "account": "حساب کاربری",
+    "placeholder": "لطفا {0} را وارد کنید"
+  },
+  "path": {
+    "home": "صفحه اصلی",
+    "about": "درباره"
+  },
+  "signIn": {
+    "title": "ورود به سایت",
+    "backToHome": "بازگشت به صفحه اصلی",
+    "username": "نام کاربری",
+    "password": "کلمه عبور"
+  },
+  "signUp": {
+    "title": "ثبت نام در سایت",
+    "reTypePass": "تکرار کلمه عبور",
+    "email": "ایمیل"
+  },
+  "main": {
+    "menu": {
+      "boxes": "جعبه ها",
+      "account": "حساب کاربری",
+      "createCard": "تعریف کارت",
+      "cardList": "لیست کارت",
+      "exit": "خروج"
+    }
+  },
+  "pages": {
+    "box": {
+      "box_number": "جعبه {0}",
+      "card_count": "تعداد کارت: "
+    }
+  }
+}

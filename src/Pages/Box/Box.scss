@@ -1,0 +1,44 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: 0.3s all;
+    .box-card {
+      background: rgb(255, 125, 71);
+      background: linear-gradient(
+        45deg,
+        rgba(255, 125, 71, 1) 0%,
+        rgba(255, 226, 120, 1) 100%
+      );
+      padding: 10px;
+      margin: 20px;
+      border-radius: 20px;
+      transition: 0.3s all;
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.089);
+      &:hover {
+        box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.212);
+      }
+      &__child {
+        padding: 20px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        background-color: white;
+        cursor: pointer;
+        img {
+          width: 150px;
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+}

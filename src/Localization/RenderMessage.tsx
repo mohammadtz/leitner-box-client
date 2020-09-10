@@ -1,6 +1,6 @@
 import { getOptions } from "../Helper";
-import { Fa } from "./Fa";
-import { En } from "./En";
+import Fa from "./Fa.json";
+import En from "./En.json";
 
 export const RenderMessage = () => {
   if (getOptions("lang") === "fa") {
