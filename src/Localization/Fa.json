@@ -31,6 +31,9 @@
     "box": {
       "box_number": "جعبه {0}",
       "card_count": "تعداد کارت: "
+    },
+    "card": {
+      "title": ""
     }
   }
 }

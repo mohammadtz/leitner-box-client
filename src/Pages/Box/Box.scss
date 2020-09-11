@@ -17,7 +17,7 @@
         rgba(255, 125, 71, 1) 0%,
         rgba(255, 226, 120, 1) 100%
       );
-      padding: 10px;
+      padding: 5px;
       margin: 20px;
       border-radius: 20px;
       transition: 0.3s all;
@@ -34,6 +34,12 @@
         border-radius: 20px;
         background-color: white;
         cursor: pointer;
+        position: relative;
+        .number {
+          position: absolute;
+          width: 70px;
+          top: 130px;
+        }
         img {
           width: 150px;
           margin-bottom: 40px;
