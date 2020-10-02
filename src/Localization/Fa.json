@@ -7,23 +7,23 @@
     "home": "صفحه اصلی",
     "about": "درباره"
   },
-  "signIn": {
+  "sign_in": {
     "title": "ورود به سایت",
-    "backToHome": "بازگشت به صفحه اصلی",
+    "back_to_home": "بازگشت به صفحه اصلی",
     "username": "نام کاربری",
     "password": "کلمه عبور"
   },
-  "signUp": {
+  "sign_up": {
     "title": "ثبت نام در سایت",
-    "reTypePass": "تکرار کلمه عبور",
+    "re_type_Pass": "تکرار کلمه عبور",
     "email": "ایمیل"
   },
   "main": {
     "menu": {
       "boxes": "جعبه ها",
       "account": "حساب کاربری",
-      "createCard": "تعریف کارت",
-      "cardList": "لیست کارت",
+      "create_card": "تعریف کارت",
+      "card_list": "لیست کارت",
       "exit": "خروج"
     }
   },
@@ -35,5 +35,11 @@
     "card": {
       "title": ""
     }
+  },
+  "create_card": {
+    "title": "تعریف کارت",
+    "front_card_placeholder": "لطفا متن روی کارت را وارد کنید",
+    "back_card_placeholder": "لطفا متن پشت کارت را وارد کنید",
+    "submit": "ایجاد کارت"
   }
 }

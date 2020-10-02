@@ -31,7 +31,7 @@ export const LoginContainer = (props: { type: number }) => {
             history.push("/login/2");
           }}
         >
-          {RenderMessage().signUp.title}
+          {RenderMessage().sign_up.title}
         </button>
       </motion.div>
     );
@@ -51,7 +51,7 @@ export const LoginContainer = (props: { type: number }) => {
             history.push("/login/1");
           }}
         >
-          {RenderMessage().signIn.title}
+          {RenderMessage().sign_in.title}
         </button>
       </motion.div>
     );

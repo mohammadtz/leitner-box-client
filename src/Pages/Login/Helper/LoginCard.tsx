@@ -28,12 +28,12 @@ export const LoginCard = () => {
       exit={{ opacity: 0 }}
       className="login-card"
     >
-      <h2>{RenderMessage().signIn.title}</h2>
+      <h2>{RenderMessage().sign_in.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signIn.username
+          RenderMessage().sign_in.username
         )}
         value={value.username}
         onChange={(e) => handleChange("username", e.target.value)}
@@ -43,7 +43,7 @@ export const LoginCard = () => {
         icon="fa fa-key"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signIn.password
+          RenderMessage().sign_in.password
         )}
         passMode={true}
         value={value.password}
@@ -51,7 +51,7 @@ export const LoginCard = () => {
         name={"password"}
       />
       <button onClick={() => history.push("/main/box")} className="submit">
-        {RenderMessage().signIn.title}
+        {RenderMessage().sign_in.title}
       </button>
     </motion.div>
   );

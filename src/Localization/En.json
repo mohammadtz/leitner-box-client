@@ -7,23 +7,23 @@
     "home": "Home",
     "about": "About"
   },
-  "signIn": {
+  "sign_in": {
     "title": "Sign In",
-    "backToHome": "Back To Home",
+    "back_to_home": "Back To Home",
     "username": "Username",
     "password": "Password"
   },
-  "signUp": {
+  "sign_up": {
     "title": "Sign Up",
-    "reTypePass": "Retype Password",
+    "re_type_Pass": "Retype Password",
     "email": "Email"
   },
   "main": {
     "menu": {
       "boxes": "Boxes",
       "account": "Account",
-      "createCard": "Create Card",
-      "cardList": "Card List",
+      "create_card": "Create Card",
+      "card_list": "Card List",
       "exit": "Exit"
     }
   },
@@ -32,5 +32,11 @@
       "box_number": "Box {0}",
       "card_count": "Card Count: "
     }
+  },
+  "create_card": {
+    "title": "create card",
+    "front_card_placeholder": "Please enter front card text",
+    "back_card_placeholder": "Please enter back card text",
+    "submit": "create card"
   }
 }

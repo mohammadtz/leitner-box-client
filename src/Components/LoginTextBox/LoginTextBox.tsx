@@ -23,9 +23,11 @@ export const LoginTextBox = (props: ILoginTextBox) => {
     ) : null;
   return (
     <div className="login-textbox">
-      <div className="login-textbox__icon-container">
-        <i className={props.icon}></i>
-      </div>
+      {props.icon && (
+        <div className="login-textbox__icon-container">
+          <i className={props.icon}></i>
+        </div>
+      )}
       <input
         type={type ? "password" : "text"}
         placeholder={props.placeholder}

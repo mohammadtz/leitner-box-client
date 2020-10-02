@@ -34,12 +34,12 @@ export const SignUpCard = () => {
       exit={{ opacity: 0 }}
       className="sign-up-card"
     >
-      <h2>{RenderMessage().signUp.title}</h2>
+      <h2>{RenderMessage().sign_up.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signIn.username
+          RenderMessage().sign_in.username
         )}
         value={value.username}
         onChange={(e) => handleChange("username", e.target.value)}
@@ -49,7 +49,7 @@ export const SignUpCard = () => {
         icon="fa fa-envelope"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signUp.email
+          RenderMessage().sign_up.email
         )}
         value={value.username}
         onChange={(e) => handleChange("username", e.target.value)}
@@ -59,7 +59,7 @@ export const SignUpCard = () => {
         icon="fa fa-key"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signIn.password
+          RenderMessage().sign_in.password
         )}
         passMode={true}
         value={value.password}
@@ -70,7 +70,7 @@ export const SignUpCard = () => {
         icon="fa fa-key"
         placeholder={RenderMessage().general.placeholder.replace(
           "{0}",
-          RenderMessage().signUp.reTypePass
+          RenderMessage().sign_up.re_type_Pass
         )}
         passMode={true}
         value={value.reTypePass}
@@ -78,7 +78,7 @@ export const SignUpCard = () => {
         name={"password"}
       />
       <button onClick={() => console.log(value)} className="submit">
-        {RenderMessage().signIn.title}
+        {RenderMessage().sign_in.title}
       </button>
     </motion.div>
   );

@@ -1,0 +1,48 @@
+$height_width_icon: 100px;
+$container-width: 400px;
+$container-height: 500px;
+
+.create-card-form {
+  position: relative;
+  &__container {
+    width: $container-width;
+    height: $container-height;
+    box-shadow: 2px 2px 25px 5px rgba(0, 0, 0, 0.075);
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    text-align: center;
+    padding: 50px;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: calc(0px - (#{$height_width_icon}/ 2));
+    right: 50%;
+    margin-right: calc(0px - (#{$height_width_icon}/ 2));
+    width: $height_width_icon;
+    height: $height_width_icon;
+    border-radius: 50%;
+    background: rgb(254, 135, 138);
+    background: linear-gradient(
+      90deg,
+      rgba(254, 135, 138, 1) 0%,
+      rgba(254, 167, 120, 1) 100%
+    );
+    box-shadow: 5px 5px 5px rgba(254, 167, 120, 0.342);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: white;
+      font-size: 2rem;
+    }
+  }
+}

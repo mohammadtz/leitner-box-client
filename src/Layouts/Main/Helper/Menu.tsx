@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { MenuList } from "./MenuList";
 import { Link, useHistory } from "react-router-dom";

@@ -1,6 +1,5 @@
 import React from "react";
 import { BoxCard } from "./Helper/BoxCard";
-import { RenderMessage } from "../../Localization/RenderMessage";
 import "./Box.scss";
 
 export const Box = () => {

@@ -17,14 +17,14 @@ export const MenuList = [
   {
     key: 2,
     path: "/main/createcard",
-    text: RenderMessage().main.menu.createCard,
+    text: RenderMessage().main.menu.create_card,
     componets: () => <CreatedCard />,
     isActice: false,
   },
   {
     key: 3,
     path: "/main/cardList",
-    text: RenderMessage().main.menu.cardList,
+    text: RenderMessage().main.menu.card_list,
     componets: () => <CardList />,
     isActice: false,
   },

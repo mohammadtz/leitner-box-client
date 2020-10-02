@@ -18,7 +18,7 @@ export const Login = (props: any) => {
               : "fa fa-arrow-left"
           }
         ></i>
-        <span>{RenderMessage().signIn.backToHome}</span>
+        <span>{RenderMessage().sign_in.back_to_home}</span>
       </button>
     </div>
   );
