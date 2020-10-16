@@ -1,33 +1,85 @@
-import React, { useState } from "react";
+import React from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
-import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
+import { sendRequest, setStore } from "../../../Helper";
+import { useLocalStore, useObserver } from "mobx-react-lite";
+import { toast } from "react-toastify";
+
+type loginModel = {
+  id: number;
+  username: string;
+  password: string;
+};
+
+type serverStore = {
+  object: loginModel;
+  data: loginModel[];
+};
 
 export const LoginCard = () => {
   const history = useHistory();
-  const [value, setValue] = useState({ username: "", password: "" });
+  const serverStore: serverStore = {
+    data: [],
+    object: { id: 0, password: "", username: "" },
+  };
+  const store = useLocalStore(() => serverStore);
   const handleChange = (name: string, value1: any) => {
-    let val = { ...value };
     switch (name) {
       case "username":
-        val.username = value1;
+        store.object.username = value1;
         break;
       case "password":
-        val.password = value1;
+        store.object.password = value1;
         break;
       default:
         break;
     }
-    setValue(val);
   };
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="login-card"
-    >
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!store.object.username) {
+      return toast(
+        RenderMessage().message.cant_null.replace(
+          "{0}",
+          RenderMessage().sign_in.username
+        ),
+        { type: "error" }
+      );
+    }
+    if (!store.object.password) {
+      return toast(
+        RenderMessage().message.cant_null.replace(
+          "{0}",
+          RenderMessage().sign_in.password
+        ),
+        { type: "error" }
+      );
+    }
+    try {
+      const res = await sendRequest({
+        url: "/user/login",
+        method: "POST",
+        data: {
+          user_name: store.object.username,
+          password: store.object.password,
+        },
+      });
+      if (res && res.data && res.status === 200) {
+        setStore("user", JSON.stringify(res.data));
+        const count = await sendRequest({ url: "/cards/count" });
+        await setStore("count", count.data);
+        store.data = res.data;
+        history.push("/main/box");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return useObserver(() => (
+    <form onSubmit={onSubmit} className="login-card">
       <h2>{RenderMessage().sign_in.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
@@ -35,7 +87,7 @@ export const LoginCard = () => {
           "{0}",
           RenderMessage().sign_in.username
         )}
-        value={value.username}
+        value={store.object.username}
         onChange={(e) => handleChange("username", e.target.value)}
         name={"username"}
       />
@@ -46,13 +98,11 @@ export const LoginCard = () => {
           RenderMessage().sign_in.password
         )}
         passMode={true}
-        value={value.password}
+        value={store.object.password}
         onChange={(e) => handleChange("password", e.target.value)}
         name={"password"}
       />
-      <button onClick={() => history.push("/main/box")} className="submit">
-        {RenderMessage().sign_in.title}
-      </button>
-    </motion.div>
-  );
+      <button className="submit">{RenderMessage().sign_in.title}</button>
+    </form>
+  ));
 };

@@ -1,39 +1,88 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
+import { useLocalStore, useObserver } from "mobx-react-lite";
+import { sendRequest, setStore } from "../../../Helper";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const SignUpCard = () => {
-  const signUp = { username: "", email: "", password: "", reTypePass: "" };
-  const [value, setValue] = useState(signUp);
-  const handleChange = (name: string, value1: any) => {
-    let val = { ...value };
+  const history = useHistory();
+  const signUp = {
+    username: "",
+    email: "",
+    mobile: "",
+    password: "",
+    reTypePass: "",
+  };
+  const local = useLocalStore(() => signUp);
+  const handleChange = (name: string, value: any) => {
     switch (name) {
       case "username":
-        val.username = value1;
+        local.username = value;
         break;
       case "email":
-        val.email = value1;
+        local.email = value;
+        break;
+      case "mobile":
+        local.mobile = value;
         break;
       case "password":
-        val.username = value1;
+        local.password = value;
         break;
       case "reTypePass":
-        val.reTypePass = value1;
+        local.reTypePass = value;
         break;
       default:
         break;
     }
-    setValue(val);
   };
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="sign-up-card"
-    >
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (
+      !local.username ||
+      !local.password ||
+      !local.reTypePass ||
+      !local.email
+    ) {
+      return;
+    }
+
+    try {
+      const res = await sendRequest({
+        url: "/user/register",
+        method: "POST",
+        data: {
+          user_name: local.username,
+          email: local.email,
+          mobile: local.mobile || undefined,
+          password: local.password,
+        },
+      });
+      if (res && res.data && res.status === 200) {
+        toast(RenderMessage().message.success_register, { type: "success" });
+        const resLogin = await sendRequest({
+          url: "/user/login",
+          method: "POST",
+          data: {
+            user_name: local.username,
+            password: local.password,
+          },
+        });
+        if (resLogin && resLogin.data) {
+          setStore("user", JSON.stringify(resLogin.data));
+          history.push("/main/box");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return useObserver(() => (
+    <form onSubmit={onSubmit} className="sign-up-card">
       <h2>{RenderMessage().sign_up.title}</h2>
       <LoginTextBox
         icon="fa fa-user"
@@ -41,7 +90,7 @@ export const SignUpCard = () => {
           "{0}",
           RenderMessage().sign_in.username
         )}
-        value={value.username}
+        value={local.username}
         onChange={(e) => handleChange("username", e.target.value)}
         name={"username"}
       />
@@ -51,9 +100,19 @@ export const SignUpCard = () => {
           "{0}",
           RenderMessage().sign_up.email
         )}
-        value={value.username}
-        onChange={(e) => handleChange("username", e.target.value)}
+        value={local.email}
+        onChange={(e) => handleChange("email", e.target.value)}
         name={"email"}
+      />
+      <LoginTextBox
+        icon="fa fa-phone"
+        placeholder={RenderMessage().general.placeholder.replace(
+          "{0}",
+          RenderMessage().sign_up.mobile
+        )}
+        value={local.mobile}
+        onChange={(e) => handleChange("mobile", e.target.value)}
+        name={"mobile"}
       />
       <LoginTextBox
         icon="fa fa-key"
@@ -62,7 +121,7 @@ export const SignUpCard = () => {
           RenderMessage().sign_in.password
         )}
         passMode={true}
-        value={value.password}
+        value={local.password}
         onChange={(e) => handleChange("password", e.target.value)}
         name={"password"}
       />
@@ -73,13 +132,11 @@ export const SignUpCard = () => {
           RenderMessage().sign_up.re_type_Pass
         )}
         passMode={true}
-        value={value.reTypePass}
+        value={local.reTypePass}
         onChange={(e) => handleChange("reTypePass", e.target.value)}
         name={"password"}
       />
-      <button onClick={() => console.log(value)} className="submit">
-        {RenderMessage().sign_in.title}
-      </button>
-    </motion.div>
-  );
+      <button className="submit">{RenderMessage().sign_in.title}</button>
+    </form>
+  ));
 };

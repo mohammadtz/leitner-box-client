@@ -4,7 +4,7 @@ import { SignUpCard } from "./SignUpCard";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
-import { getOptions } from "../../../Helper";
+import { getStore } from "../../../Helper";
 
 const store = require("store");
 
@@ -12,7 +12,7 @@ export const LoginContainer = (props: { type: number }) => {
   store.set("loginType", props.type);
 
   const [login, setLogin] = useState(
-    getOptions("loginType") === 1 ? true : false
+    getStore("loginType") === 1 ? true : false
   );
 
   const history = useHistory();
