@@ -1,16 +1,17 @@
 import React from "react";
 import { BoxCard } from "./Helper/BoxCard";
 import "./Box.scss";
+import { count } from "../../Helper";
 
 export const Box = () => {
   return (
     <div className="box">
       <div className="box__container">
-        <BoxCard count={2} num="number1" />
-        <BoxCard count={5} num="number2" />
-        <BoxCard count={7} num="number3" />
-        <BoxCard count={4} num="number4" />
-        <BoxCard count={6} num="number5" />
+        <BoxCard count={count.box1} num="number1" />
+        <BoxCard count={count.box2} num="number2" />
+        <BoxCard count={count.box3} num="number3" />
+        <BoxCard count={count.box4} num="number4" />
+        <BoxCard count={count.box5} num="number5" />
       </div>
     </div>
   );
