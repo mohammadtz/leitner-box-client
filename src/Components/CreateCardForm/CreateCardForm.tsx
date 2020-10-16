@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { RenderMessage } from "../../Localization/RenderMessage";
 import { LoginTextBox } from "../LoginTextBox/LoginTextBox";
 import "./CreateCardForm.scss";
@@ -34,6 +35,16 @@ export const CreateCardForm = () => {
     setData(values);
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!data.back_card.value || !data.fornt_card.value) {
+      return toast(RenderMessage().general.required_msg, {
+        type: "error",
+      });
+    }
+    return toast(RenderMessage().general.save_success, { type: "success" });
+  };
+
   return (
     <div className="create-card-form">
       <div className="create-card-form__icon">
@@ -41,11 +52,7 @@ export const CreateCardForm = () => {
       </div>
       <div className="create-card-form__container">
         <h2>{RenderMessage().create_card.title}</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={onSubmit}>
           <LoginTextBox
             placeholder={data.fornt_card.placeholder}
             value={data.fornt_card.value}
