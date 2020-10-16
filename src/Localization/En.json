@@ -1,7 +1,9 @@
 {
   "general": {
     "account": "Account",
-    "placeholder": "Please Enter {0}"
+    "placeholder": "Please Enter {0}",
+    "required_msg": "Required fields are not filled",
+    "save_success": "Data storage completed successfully"
   },
   "path": {
     "home": "Home",
@@ -16,7 +18,8 @@
   "sign_up": {
     "title": "Sign Up",
     "re_type_Pass": "Retype Password",
-    "email": "Email"
+    "email": "Email",
+    "mobile": "Mobile"
   },
   "main": {
     "menu": {
@@ -38,5 +41,10 @@
     "front_card_placeholder": "Please enter front card text",
     "back_card_placeholder": "Please enter back card text",
     "submit": "create card"
+  },
+  "message": {
+    "cant_null": "{0} cannot be null",
+    "success_register": "Registration completed successfully",
+    "serverـconnectionـerror": "Server connection error"
   }
 }

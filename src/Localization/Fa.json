@@ -1,7 +1,9 @@
 {
   "general": {
     "account": "حساب کاربری",
-    "placeholder": "لطفا {0} را وارد کنید"
+    "placeholder": "لطفا {0} را وارد کنید",
+    "required_msg": "فیلد های الزامی پر نشده اند",
+    "save_success": "ذخیره اطلاعات با موفقیت انجام شد"
   },
   "path": {
     "home": "صفحه اصلی",
@@ -16,7 +18,8 @@
   "sign_up": {
     "title": "ثبت نام در سایت",
     "re_type_Pass": "تکرار کلمه عبور",
-    "email": "ایمیل"
+    "email": "ایمیل",
+    "mobile": "موبایل"
   },
   "main": {
     "menu": {
@@ -41,5 +44,10 @@
     "front_card_placeholder": "لطفا متن روی کارت را وارد کنید",
     "back_card_placeholder": "لطفا متن پشت کارت را وارد کنید",
     "submit": "ایجاد کارت"
+  },
+  "message": {
+    "cant_null": "{0} نمی تواند خالی باشد",
+    "success_register": "ثبت نام با موفقیت انجام شد",
+    "serverـconnectionـerror": "خطا در ارتباط با سرور"
   }
 }
