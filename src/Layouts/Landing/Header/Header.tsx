@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.scss";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
-import { getOptions } from "../../../Helper";
+import { getStore } from "../../../Helper";
 
 export type RouteType = {
   src: string;
@@ -27,9 +27,7 @@ export const Header = (props: IHeaderProps) => {
   return (
     <header>
       <div>
-        <button
-          onClick={() => history.push(`/login/${getOptions("loginType")}`)}
-        >
+        <button onClick={() => history.push(`/login/${getStore("loginType")}`)}>
           {RenderMessage().general.account}
         </button>
       </div>

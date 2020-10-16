@@ -21,7 +21,11 @@ export const Menu = () => {
           className="menu-list-style"
           style={item.isActice ? { backgroundColor: "#004d6a" } : {}}
         >
-          <Link to={item.path} style={item.isActice ? { color: "white" } : {}}>
+          <Link
+            to={item.path}
+            onClick={item.onClick}
+            style={item.isActice ? { color: "white" } : {}}
+          >
             {item.text}
           </Link>
         </li>

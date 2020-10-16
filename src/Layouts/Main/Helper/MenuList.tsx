@@ -5,6 +5,7 @@ import { CreatedCard } from "../../../Pages/Card/CreatedCard";
 import { CardList } from "../../../Pages/Card/CardList";
 import { Account } from "../../../Pages/Account/Account";
 import { Home } from "../../../Pages";
+import { removeStore } from "../../../Helper";
 
 export const MenuList = [
   {
@@ -40,6 +41,7 @@ export const MenuList = [
     path: "/home",
     text: RenderMessage().main.menu.exit,
     componets: () => <Home />,
+    onClick: () => removeStore("user"),
     isActice: false,
   },
 ];
