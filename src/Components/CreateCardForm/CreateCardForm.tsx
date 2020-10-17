@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useLocalStore, useObserver } from "mobx-react-lite";
+import React from "react";
 import { toast } from "react-toastify";
+import { GetCount, sendRequest } from "../../Helper";
 import { RenderMessage } from "../../Localization/RenderMessage";
 import { LoginTextBox } from "../LoginTextBox/LoginTextBox";
 import "./CreateCardForm.scss";
 
-const local = {
+const localStore = {
   fornt_card: {
     title: "fornt card",
     placeholder: RenderMessage().create_card.front_card_placeholder,
@@ -18,34 +20,47 @@ const local = {
 };
 
 export const CreateCardForm = () => {
-  const [data, setData] = useState(local);
+  const local = useLocalStore(() => localStore);
 
   const handleValueChanged = (name: string, value: string) => {
-    const values = { ...data };
     switch (name) {
-      case data.fornt_card.title:
-        values.fornt_card.value = value;
+      case local.fornt_card.title:
+        local.fornt_card.value = value;
         break;
-      case data.back_card.title:
-        values.back_card.value = value;
+      case local.back_card.title:
+        local.back_card.value = value;
         break;
       default:
         break;
     }
-    setData(values);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!data.back_card.value || !data.fornt_card.value) {
+    if (!local.back_card.value || !local.fornt_card.value) {
       return toast(RenderMessage().general.required_msg, {
         type: "error",
       });
     }
-    return toast(RenderMessage().general.save_success, { type: "success" });
+    try {
+      const res = await sendRequest({
+        url: "/cards",
+        method: "POST",
+        data: {
+          front: local.fornt_card.value,
+          back: local.back_card.value,
+        },
+      });
+      if (res.status === 200) {
+        GetCount();
+        local.fornt_card.value = "";
+        local.back_card.value = "";
+        return toast(RenderMessage().general.save_success, { type: "success" });
+      }
+    } catch (error) {}
   };
 
-  return (
+  return useObserver(() => (
     <div className="create-card-form">
       <div className="create-card-form__icon">
         <i className="fa fa-file" aria-hidden="true"></i>
@@ -54,17 +69,17 @@ export const CreateCardForm = () => {
         <h2>{RenderMessage().create_card.title}</h2>
         <form onSubmit={onSubmit}>
           <LoginTextBox
-            placeholder={data.fornt_card.placeholder}
-            value={data.fornt_card.value}
+            placeholder={local.fornt_card.placeholder}
+            value={local.fornt_card.value}
             onChange={(e) =>
-              handleValueChanged(data.fornt_card.title, e.target.value)
+              handleValueChanged(local.fornt_card.title, e.target.value)
             }
           />
           <LoginTextBox
-            placeholder={data.back_card.placeholder}
-            value={data.back_card.value}
+            placeholder={local.back_card.placeholder}
+            value={local.back_card.value}
             onChange={(e) =>
-              handleValueChanged(data.back_card.title, e.target.value)
+              handleValueChanged(local.back_card.title, e.target.value)
             }
           />
           <br />
@@ -72,5 +87,5 @@ export const CreateCardForm = () => {
         </form>
       </div>
     </div>
-  );
+  ));
 };

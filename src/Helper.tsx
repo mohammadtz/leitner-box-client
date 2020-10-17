@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { RenderMessage } from "./Localization/RenderMessage";
 import { IUserData } from "./Types";
@@ -80,4 +80,14 @@ export const sendRequest = async ({
     );
     throw error.response;
   }
+};
+
+export const GetCount = async (): Promise<ICount> => {
+  const count: AxiosResponse<ICount> = await sendRequest({
+    url: "/cards/count",
+  });
+  if (count.data) {
+    setStore("count", count.data);
+  }
+  return count.data;
 };

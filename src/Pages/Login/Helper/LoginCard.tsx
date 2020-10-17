@@ -2,7 +2,7 @@ import React from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
-import { sendRequest, setStore } from "../../../Helper";
+import { GetCount, sendRequest, setStore } from "../../../Helper";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import { toast } from "react-toastify";
 
@@ -68,8 +68,7 @@ export const LoginCard = () => {
       });
       if (res && res.data && res.status === 200) {
         setStore("user", JSON.stringify(res.data));
-        const count = await sendRequest({ url: "/cards/count" });
-        await setStore("count", count.data);
+        GetCount();
         store.data = res.data;
         history.push("/main/box");
       }

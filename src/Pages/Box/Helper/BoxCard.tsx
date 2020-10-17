@@ -5,11 +5,12 @@ interface IBoxCard {
   title?: string;
   count?: number | string;
   num: "number1" | "number2" | "number3" | "number4" | "number5";
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export const BoxCard = (props: IBoxCard) => {
   return (
-    <div className="box-card">
+    <button className="box-card" onClick={props.onClick}>
       <div className="box-card__child">
         <img src={require("./../../../assets/svg/inbox.svg")} alt="" />
         <img
@@ -22,6 +23,6 @@ export const BoxCard = (props: IBoxCard) => {
           <span>{props.count}</span>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
