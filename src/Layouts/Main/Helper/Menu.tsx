@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { MenuList } from "./MenuList";
@@ -15,21 +16,23 @@ export const Menu = () => {
       } else {
         rt[index].isActice = false;
       }
-      return (
-        <li
-          key={item.key}
-          className="menu-list-style"
-          style={item.isActice ? { backgroundColor: "#004d6a" } : {}}
-        >
-          <Link
-            to={item.path}
-            onClick={item.onClick}
-            style={item.isActice ? { color: "white" } : {}}
+      if (!item.notShowMenu) {
+        return (
+          <li
+            key={item.key}
+            className="menu-list-style"
+            style={item.isActice ? { backgroundColor: "#004d6a" } : {}}
           >
-            {item.text}
-          </Link>
-        </li>
-      );
+            <Link
+              to={item.path}
+              onClick={item.onClick}
+              style={item.isActice ? { color: "white" } : {}}
+            >
+              {item.text}
+            </Link>
+          </li>
+        );
+      }
     });
   return <div className="menu">{renderMenu()}</div>;
 };

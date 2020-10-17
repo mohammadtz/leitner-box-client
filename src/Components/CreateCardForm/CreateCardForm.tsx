@@ -1,8 +1,10 @@
+import { AxiosResponse } from "axios";
 import { useLocalStore, useObserver } from "mobx-react-lite";
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
-import { GetCount, sendRequest } from "../../Helper";
+import { ICount, sendRequest, setStore } from "../../Helper";
 import { RenderMessage } from "../../Localization/RenderMessage";
+import { StoreContext } from "../../Store";
 import { LoginTextBox } from "../LoginTextBox/LoginTextBox";
 import "./CreateCardForm.scss";
 
@@ -20,6 +22,7 @@ const localStore = {
 };
 
 export const CreateCardForm = () => {
+  const context = useContext(StoreContext);
   const local = useLocalStore(() => localStore);
 
   const handleValueChanged = (name: string, value: string) => {
@@ -52,7 +55,13 @@ export const CreateCardForm = () => {
         },
       });
       if (res.status === 200) {
-        GetCount();
+        const count: AxiosResponse<ICount> = await sendRequest({
+          url: "/cards/count",
+        });
+        if (count.data) {
+          setStore("count", count.data);
+          context.CountStore = count.data;
+        }
         local.fornt_card.value = "";
         local.back_card.value = "";
         return toast(RenderMessage().general.save_success, { type: "success" });

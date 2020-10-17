@@ -10,14 +10,16 @@ export const Main = () => {
       <Menu />
       <div className="main__body">
         <Switch>
-          {MenuList.map((item) => (
-            <Route
-              key={item.key}
-              path={item.path}
-              exact
-              component={item.componets}
-            />
-          ))}
+          {MenuList.map((item) => {
+            return (
+              <Route
+                key={item.key}
+                path={item.path}
+                exact
+                component={item.componets}
+              />
+            );
+          })}
         </Switch>
       </div>
     </div>

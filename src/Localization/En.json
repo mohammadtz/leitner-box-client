@@ -34,6 +34,9 @@
     "box": {
       "box_number": "Box {0}",
       "card_count": "Card Count: "
+    },
+    "card": {
+      "show_answer":"Show answer"
     }
   },
   "create_card": {

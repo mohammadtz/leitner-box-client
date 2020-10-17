@@ -6,6 +6,7 @@ import { CardList } from "../../../Pages/Card/CardList";
 import { Account } from "../../../Pages/Account/Account";
 import { Home } from "../../../Pages";
 import { removeStore } from "../../../Helper";
+import { BrowseCard } from "../../../Pages/BrowseCard/BrowseCard";
 
 export const MenuList = [
   {
@@ -17,31 +18,41 @@ export const MenuList = [
   },
   {
     key: 2,
+    path: "/main/box/:num",
+    componets: () => <BrowseCard />,
+    isActice: false,
+    notShowMenu: true,
+  },
+  {
+    key: 3,
     path: "/main/createcard",
     text: RenderMessage().main.menu.create_card,
     componets: () => <CreatedCard />,
     isActice: false,
   },
   {
-    key: 3,
+    key: 4,
     path: "/main/cardList",
     text: RenderMessage().main.menu.card_list,
     componets: () => <CardList />,
     isActice: false,
   },
   {
-    key: 4,
+    key: 5,
     path: "/main/account",
     text: RenderMessage().main.menu.account,
     componets: () => <Account />,
     isActice: false,
   },
   {
-    key: 5,
+    key: 6,
     path: "/home",
     text: RenderMessage().main.menu.exit,
     componets: () => <Home />,
-    onClick: () => removeStore("user"),
+    onClick: () => {
+      removeStore("user");
+      removeStore("count");
+    },
     isActice: false,
   },
 ];
