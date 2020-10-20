@@ -5,7 +5,7 @@ import { IUserData } from "./Types";
 
 const store = require("store");
 
-const server = "http://localhost:4000";
+const server = "http://192.168.1.105:4000";
 // const server = "http://192.168.1.103:4000";
 
 export const getStore = (options: any) => store.get(options);

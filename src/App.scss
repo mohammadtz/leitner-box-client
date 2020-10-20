@@ -1,3 +1,38 @@
 .App {
   height: 100vh;
 }
+
+.btn-success {
+  background-color: #2ecc71;
+  min-width: 5rem;
+  color: white;
+  &:hover {
+    background-color: #29b664;
+  }
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  min-width: 5rem;
+  color: white;
+  &:hover {
+    background-color: #ce4536;
+  }
+}
+
+.btn-info {
+  background-color: #3498db;
+  min-width: 5rem;
+  color: white;
+  &:hover {
+    background-color: #2f84bd;
+  }
+}
+
+.success-color {
+  color: #2ecc71;
+}
+
+.danger-color {
+  color: #e74c3c;
+}

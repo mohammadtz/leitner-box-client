@@ -10,6 +10,7 @@ export interface IUserData {
 }
 
 export interface ICard {
+  _id:string;
   front: string;
   back: string;
   date: string;

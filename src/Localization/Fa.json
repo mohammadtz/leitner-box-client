@@ -3,7 +3,12 @@
     "account": "حساب کاربری",
     "placeholder": "لطفا {0} را وارد کنید",
     "required_msg": "فیلد های الزامی پر نشده اند",
-    "save_success": "ذخیره اطلاعات با موفقیت انجام شد"
+    "save_success": "ذخیره اطلاعات با موفقیت انجام شد",
+    "yes":"بلی",
+    "no":"خیر",
+    "submit":"ثبت",
+    "answer":"پاسخ",
+    "next":"بعدی"
   },
   "path": {
     "home": "صفحه اصلی",
@@ -36,7 +41,10 @@
       "card_count": "تعداد کارت: "
     },
     "card": {
-      "show_answer":"نمایش پاسخ"
+      "show_answer":"نمایش پاسخ",
+      "enter_the_correct_answer":"پاسخ صحیح را وارد کید",
+      "the_answer_is_correct":"پاسخ وارده صحیح است",
+      "the_answer_is_incorrect":"پاسخ وارده نادرست است"
     }
   },
   "create_card": {

@@ -3,7 +3,12 @@
     "account": "Account",
     "placeholder": "Please Enter {0}",
     "required_msg": "Required fields are not filled",
-    "save_success": "Data storage completed successfully"
+    "save_success": "Data storage completed successfully",
+    "yes":"Yes",
+    "no":"No",
+    "submit":"Submit",
+    "answer":"answer",
+    "next":"Next"
   },
   "path": {
     "home": "Home",
@@ -36,7 +41,10 @@
       "card_count": "Card Count: "
     },
     "card": {
-      "show_answer":"Show answer"
+      "show_answer":"Show answer",
+      "enter_the_correct_answer":"Enter the correct answer",
+      "the_answer_is_correct":"The answer is correct",
+      "the_answer_is_incorrect":"The answer is incorrect"
     }
   },
   "create_card": {

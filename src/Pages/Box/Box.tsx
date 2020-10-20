@@ -7,9 +7,11 @@ import { useHistory } from "react-router-dom";
 export const Box = () => {
   const context = useContext(StoreContext);
   const history = useHistory();
+
   const onClick = (num: number) => {
     history.push(`/main/box/${num}`);
   };
+
   return (
     <div className="box">
       <div className="box__container">
