@@ -1,0 +1,13 @@
+@import "./../../variables";
+
+.btn-text {
+  background-color: transparent;
+  padding: 0;
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.btn-text-danger {
+  color: $danger-color;
+}
