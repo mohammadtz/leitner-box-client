@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { RenderMessage } from "./Localization/RenderMessage";
 import { IUserData } from "./Types";
@@ -49,7 +49,7 @@ export interface ICount {
   box5: number;
 }
 
-export const user: IUserData = getStore("user") && JSON.parse(getStore("user"));
+export const user: IUserData = getStore("user");
 export const count: ICount = getStore("count");
 
 export const sendRequest = async ({
@@ -75,13 +75,20 @@ export const sendRequest = async ({
     }
     return res;
   } catch (error) {
-    console.log(error);
     console.log(error.response);
     toast(
       error.response?.data.message ||
-        RenderMessage().message.serverـconnectionـerror,
+      RenderMessage().message.serverـconnectionـerror,
       { type: "error" }
     );
     throw error.response;
   }
 };
+
+export const GetCount = async () => {
+  const res: AxiosResponse<ICount> = await sendRequest({
+    url: "/cards/count",
+  });
+  setStore("count", res.data)
+  return res;
+}
