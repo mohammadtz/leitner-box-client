@@ -11,7 +11,7 @@ import {
   Img_Number4,
   Img_Number5,
 } from "../../assets/Export";
-import { sendRequest, setStore } from "../../Helper";
+import { GetCount, sendRequest } from "../../Helper";
 import { RenderMessage } from "../../Localization/RenderMessage";
 import { StoreContext } from "../../Store";
 import { ICard } from "../../Types";
@@ -35,7 +35,8 @@ const localStore: IBrowseCard = {
   loader: false,
 };
 
-export const BrowseCard: React.FC = (props) => {
+
+export const BrowseCard: React.FC = () => {
   const local = useLocalStore(() => localStore);
   const { num }: { num: string } = useParams();
   const context = useContext(StoreContext);
@@ -52,7 +53,10 @@ export const BrowseCard: React.FC = (props) => {
     } catch (error) {
       console.log(error);
       if (error.request.status === 404) {
-        getCount();
+        const res = await GetCount();
+        if (res.data) {
+          context.CountStore = res.data;
+        }
         history.push("/main/box");
       }
     }
@@ -75,14 +79,6 @@ export const BrowseCard: React.FC = (props) => {
       return Img_Number5;
     }
     return "";
-  };
-
-  const getCount = async () => {
-    const count = await sendRequest({
-      url: "/cards/count",
-    });
-    context.CountStore = count.data;
-    setStore("count", count.data);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -151,6 +147,7 @@ export const BrowseCard: React.FC = (props) => {
                 value={local.value}
                 onChange={(e) => (local.value = e.target.value)}
                 readOnly={local.readOnly}
+                autoFocus
               />
               <button className="btn-success">
                 {RenderMessage().general.submit}

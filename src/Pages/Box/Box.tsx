@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BoxCard } from "./Helper/BoxCard";
 import "./Box.scss";
 import { StoreContext } from "../../Store";
 import { useHistory } from "react-router-dom";
+import { GetCount } from "../../Helper";
 
 export const Box = () => {
   const context = useContext(StoreContext);
@@ -11,6 +12,14 @@ export const Box = () => {
   const onClick = (num: number) => {
     history.push(`/main/box/${num}`);
   };
+
+  useEffect(()=>{
+    const getCount = async () => {
+      const res = await GetCount();
+      context.CountStore = res.data;
+    }
+    getCount();
+  },[context.CountStore])
 
   return (
     <div className="box">
