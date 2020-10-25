@@ -1,4 +1,5 @@
 import React, { CSSProperties } from "react";
+import { LandingLayout } from "../../Layouts/Landing/LandingLayout";
 
 export const Home = () => {
   const style: CSSProperties = {
@@ -7,8 +8,10 @@ export const Home = () => {
     height: "100%",
   };
   return (
-    <div style={style}>
-      <h1>Home</h1>
-    </div>
+    <LandingLayout>
+      <div style={style}>
+        <h1>Home</h1>
+      </div>
+    </LandingLayout>
   );
 };

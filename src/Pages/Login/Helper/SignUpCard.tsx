@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { useLocalStore, useObserver } from "mobx-react-lite";
-import { sendRequest, setStore } from "../../../Helper";
+import { GetCount, sendRequest, setStore } from "../../../Helper";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { StoreContext } from "../../../Store";
 
 export const SignUpCard = () => {
+  const context = useContext(StoreContext);
   const history = useHistory();
   const signUp = {
     username: "",
@@ -72,7 +74,12 @@ export const SignUpCard = () => {
           },
         });
         if (resLogin && resLogin.data) {
-          setStore("user", JSON.stringify(resLogin.data));
+          setStore("user", res.data);
+          const count = await GetCount();
+          if (count.data) {
+            context.CountStore = count.data;
+          }
+          setStore("user", resLogin.data);
           history.push("/main/box");
         }
       }

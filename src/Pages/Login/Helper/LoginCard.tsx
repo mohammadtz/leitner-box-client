@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
-import { ICount, sendRequest, setStore } from "../../../Helper";
+import { GetCount, sendRequest, setStore } from "../../../Helper";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import { toast } from "react-toastify";
-import { AxiosResponse } from "axios";
 import { StoreContext } from "../../../Store";
 
 type loginModel = {
@@ -70,14 +69,9 @@ export const LoginCard = () => {
         },
       });
       if (res && res.data && res.status === 200) {
-        setStore("user", JSON.stringify(res.data));
-        const count: AxiosResponse<ICount> = await sendRequest({
-          url: "/cards/count",
-        });
-        if (count.data) {
-          setStore("count", count.data);
-          context.CountStore = count.data;
-        }
+        await setStore("user", res.data);
+        const count = await GetCount();
+        context.CountStore = count.data;
         store.data = res.data;
         history.push("/main/box");
       }
