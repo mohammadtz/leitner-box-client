@@ -8,7 +8,8 @@
     "no":"No",
     "submit":"Submit",
     "answer":"answer",
-    "next":"Next"
+    "next":"Next",
+    "question":"Question"
   },
   "path": {
     "home": "Home",
@@ -44,7 +45,8 @@
       "show_answer":"Show answer",
       "enter_the_correct_answer":"Enter the correct answer",
       "the_answer_is_correct":"The answer is correct",
-      "the_answer_is_incorrect":"The answer is incorrect"
+      "the_answer_is_incorrect":"The answer is incorrect",
+      "back_to_box":"Back to box"
     }
   },
   "create_card": {

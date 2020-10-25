@@ -2,7 +2,7 @@ import React from "react";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { Box } from "../../../Pages/Box/Box";
 import { CreatedCard } from "../../../Pages/Card/CreatedCard";
-import { CardList } from "../../../Pages/Card/CardList";
+import { HistoryList } from "../../../Pages/Card/HistoryList";
 import { Account } from "../../../Pages/Account/Account";
 import { Home } from "../../../Pages";
 import { removeStore } from "../../../Helper";
@@ -33,8 +33,8 @@ export const MenuList = [
   {
     key: 4,
     path: "/main/cardList",
-    text: RenderMessage().main.menu.card_list,
-    componets: () => <CardList />,
+    text: RenderMessage().main.menu.card_history,
+    componets: () => <HistoryList />,
     isActice: false,
   },
   {

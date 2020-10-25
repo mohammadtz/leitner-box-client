@@ -8,7 +8,8 @@
     "no":"خیر",
     "submit":"ثبت",
     "answer":"پاسخ",
-    "next":"بعدی"
+    "next":"بعدی",
+    "question":"سوال"
   },
   "path": {
     "home": "صفحه اصلی",
@@ -31,7 +32,7 @@
       "boxes": "جعبه ها",
       "account": "حساب کاربری",
       "create_card": "تعریف کارت",
-      "card_list": "لیست کارت",
+      "card_history": "بایگانی",
       "exit": "خروج"
     }
   },
@@ -44,7 +45,8 @@
       "show_answer":"نمایش پاسخ",
       "enter_the_correct_answer":"پاسخ صحیح را وارد کید",
       "the_answer_is_correct":"پاسخ وارده صحیح است",
-      "the_answer_is_incorrect":"پاسخ وارده نادرست است"
+      "the_answer_is_incorrect":"پاسخ وارده نادرست است",
+      "back_to_box":"برگرداندن به  جعبه"
     }
   },
   "create_card": {
