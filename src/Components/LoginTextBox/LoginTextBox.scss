@@ -41,6 +41,7 @@ $icon-color: #858585;
     background-color: transparent;
     text-align: center;
     color: $input-color;
+    direction: ltr;
     &::placeholder {
       color: $placeholder-color;
       text-align: center;

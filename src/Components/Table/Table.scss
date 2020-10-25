@@ -1,0 +1,49 @@
+@import "./../../variables";
+
+.table {
+  width: 90%;
+  margin-top: 4rem;
+  border: 1px solid rgba(128, 128, 128, 0.171);
+  border-collapse: collapse;
+  position: relative;
+  thead {
+    tr {
+      background-color: $base-dark-color;
+      color: white;
+      th {
+        padding: 0.5rem;
+        text-align: start;
+        padding-inline-start: 2rem;
+      }
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid rgba(128, 128, 128, 0.274);
+      &:nth-child(odd) {
+        background-color: rgba(128, 128, 128, 0.103);
+      }
+      &:hover {
+        background-color: rgba(128, 128, 128, 0.171);
+      }
+      td {
+        padding: 0.5rem;
+        padding-inline-start: 2rem;
+      }
+    }
+  }
+  &__loader {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.198);
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 5rem;
+    }
+  }
+}
