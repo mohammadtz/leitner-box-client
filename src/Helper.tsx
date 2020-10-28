@@ -39,6 +39,7 @@ export type TSendRequest = {
   data?: any;
   params?: any;
   method?: TMethod;
+  showLog?: boolean;
 };
 
 export interface ICount {
@@ -57,6 +58,7 @@ export const sendRequest = async ({
   data,
   params,
   method = "get",
+  showLog = true,
 }: TSendRequest) => {
   try {
     const res = await Axios({
@@ -76,19 +78,21 @@ export const sendRequest = async ({
     return res;
   } catch (error) {
     console.log(error.response);
-    toast(
-      error.response?.data.message ||
-      RenderMessage().message.serverـconnectionـerror,
-      { type: "error" }
-    );
+    showLog &&
+      toast(
+        error.response?.data.message ||
+          RenderMessage().message.serverـconnectionـerror,
+        { type: "error" }
+      );
     throw error.response;
   }
 };
 
 export const GetCount = async () => {
+  console.log(getStore("user"));
   const res: AxiosResponse<ICount> = await sendRequest({
     url: "/cards/count",
   });
-  setStore("count", res.data)
+  await setStore("count", res.data);
   return res;
-}
+};

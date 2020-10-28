@@ -83,6 +83,7 @@ export const CreateCardForm = () => {
             onChange={(e) =>
               handleValueChanged(local.fornt_card.title, e.target.value)
             }
+            autoFocus
           />
           <LoginTextBox
             placeholder={local.back_card.placeholder}

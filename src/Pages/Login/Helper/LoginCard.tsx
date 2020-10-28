@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { RenderMessage } from "../../../Localization/RenderMessage";
-import { useHistory } from "react-router-dom";
-import { GetCount, sendRequest, setStore } from "../../../Helper";
+import { sendRequest, setStore } from "../../../Helper";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../../Store";
+import { useHistory } from "react-router-dom";
 
 type loginModel = {
   id: number;
@@ -21,18 +21,20 @@ type serverStore = {
 export const LoginCard = () => {
   const context = useContext(StoreContext);
   const history = useHistory();
+
   const serverStore: serverStore = {
     data: [],
     object: { id: 0, password: "", username: "" },
   };
-  const store = useLocalStore(() => serverStore);
+
+  const local = useLocalStore(() => serverStore);
   const handleChange = (name: string, value1: any) => {
     switch (name) {
       case "username":
-        store.object.username = value1;
+        local.object.username = value1;
         break;
       case "password":
-        store.object.password = value1;
+        local.object.password = value1;
         break;
       default:
         break;
@@ -41,7 +43,7 @@ export const LoginCard = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!store.object.username) {
+    if (!local.object.username) {
       return toast(
         RenderMessage().message.cant_null.replace(
           "{0}",
@@ -50,7 +52,7 @@ export const LoginCard = () => {
         { type: "error" }
       );
     }
-    if (!store.object.password) {
+    if (!local.object.password) {
       return toast(
         RenderMessage().message.cant_null.replace(
           "{0}",
@@ -64,15 +66,14 @@ export const LoginCard = () => {
         url: "/user/login",
         method: "POST",
         data: {
-          user_name: store.object.username,
-          password: store.object.password,
+          user_name: local.object.username,
+          password: local.object.password,
         },
       });
-      if (res && res.data && res.status === 200) {
-        await setStore("user", res.data);
-        const count = await GetCount();
-        context.CountStore = count.data;
-        store.data = res.data;
+      if (res.status === 200) {
+        setStore("user", res.data);
+        local.data = res.data;
+        context.CountStore = res.data.count;
         history.push("/main/box");
       }
     } catch (error) {
@@ -89,7 +90,7 @@ export const LoginCard = () => {
           "{0}",
           RenderMessage().sign_in.username
         )}
-        value={store.object.username}
+        value={local.object.username}
         onChange={(e) => handleChange("username", e.target.value)}
         name={"username"}
       />
@@ -100,7 +101,7 @@ export const LoginCard = () => {
           RenderMessage().sign_in.password
         )}
         passMode={true}
-        value={store.object.password}
+        value={local.object.password}
         onChange={(e) => handleChange("password", e.target.value)}
         name={"password"}
       />

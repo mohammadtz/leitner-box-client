@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import { BoxCard } from "./Helper/BoxCard";
 import "./Box.scss";
 import { StoreContext } from "../../Store";
 import { useHistory } from "react-router-dom";
-import { GetCount } from "../../Helper";
+import { GetCount, getStore } from "../../Helper";
+import { useObserver } from "mobx-react-lite";
 
 export const Box = () => {
   const context = useContext(StoreContext);
@@ -13,15 +15,18 @@ export const Box = () => {
     history.push(`/main/box/${num}`);
   };
 
-  useEffect(()=>{
-    const getCount = async () => {
+  const getCount = async () => {
+    if (getStore("user")) {
       const res = await GetCount();
       context.CountStore = res.data;
     }
-    getCount();
-  },[context.CountStore])
+  };
 
-  return (
+  useEffect(() => {
+    getCount();
+  }, [context.CountStore]);
+
+  return useObserver(() => (
     <div className="box">
       <div className="box__container">
         <BoxCard
@@ -51,5 +56,5 @@ export const Box = () => {
         />
       </div>
     </div>
-  );
+  ));
 };

@@ -24,6 +24,7 @@ interface IBrowseCard {
   success: boolean;
   readOnly: boolean;
   loader: boolean;
+  inputDisabled: boolean;
 }
 
 const localStore: IBrowseCard = {
@@ -33,8 +34,8 @@ const localStore: IBrowseCard = {
   success: false,
   readOnly: false,
   loader: false,
+  inputDisabled: false,
 };
-
 
 export const BrowseCard: React.FC = () => {
   const local = useLocalStore(() => localStore);
@@ -43,6 +44,9 @@ export const BrowseCard: React.FC = () => {
   const history = useHistory();
 
   const getData = async () => {
+    local.inputDisabled = false;
+    local.show_answer = false;
+    local.loader = true;
     try {
       const res = await sendRequest({
         url: `/cards/${num}`,
@@ -51,7 +55,6 @@ export const BrowseCard: React.FC = () => {
         local.data = res.data;
       }
     } catch (error) {
-      console.log(error);
       if (error.request.status === 404) {
         const res = await GetCount();
         if (res.data) {
@@ -59,6 +62,8 @@ export const BrowseCard: React.FC = () => {
         }
         history.push("/main/box");
       }
+    } finally {
+      local.loader = false;
     }
   };
 
@@ -67,16 +72,22 @@ export const BrowseCard: React.FC = () => {
   }, []);
 
   const renderImage = (): string => {
-    if (Number(num) === 1) {
-      return Img_Number1;
-    } else if (Number(num) === 2) {
-      return Img_Number2;
-    } else if (Number(num) === 3) {
-      return Img_Number3;
-    } else if (Number(num) === 4) {
-      return Img_Number4;
-    } else if (Number(num) === 5) {
-      return Img_Number5;
+    switch (Number(num)) {
+      case 1:
+        return Img_Number1;
+      case 2:
+        return Img_Number2;
+
+      case 3:
+        return Img_Number3;
+
+      case 4:
+        return Img_Number4;
+
+      case 5:
+        return Img_Number5;
+      default:
+        break;
     }
     return "";
   };
@@ -93,39 +104,39 @@ export const BrowseCard: React.FC = () => {
       );
       return;
     }
-    if (local.data?.back === local.value) {
-      local.success = true;
-      toast(RenderMessage().pages.card.the_answer_is_correct, {
-        type: "success",
-      });
-    } else {
-      local.success = false;
-      toast(RenderMessage().pages.card.the_answer_is_incorrect, {
-        type: "error",
-      });
-    }
-    local.show_answer = true;
+    sendData();
   };
 
   const sendData = async () => {
     local.loader = true;
-    local.show_answer = false;
-    local.value = "";
     try {
       const res = await sendRequest({
         url: `/cards/${local.data?._id}`,
         method: "put",
         params: {
-          success: local.success ? "1" : "0",
+          answer: local.value,
         },
+        showLog: false,
       });
 
       if (res.status === 200) {
-        getData();
+        const getCount = await GetCount();
+        context.CountStore = getCount.data;
+        local.success = true;
+        toast(RenderMessage().pages.card.the_answer_is_correct, {
+          type: "success",
+        });
       }
     } catch (error) {
+      local.success = false;
+      toast(RenderMessage().pages.card.the_answer_is_incorrect, {
+        type: "error",
+      });
     } finally {
       local.loader = false;
+      local.value = "";
+      local.show_answer = true;
+      local.inputDisabled = true;
     }
   };
 
@@ -148,6 +159,7 @@ export const BrowseCard: React.FC = () => {
                 onChange={(e) => (local.value = e.target.value)}
                 readOnly={local.readOnly}
                 autoFocus
+                disabled={local.inputDisabled}
               />
               <button className="btn-success">
                 {RenderMessage().general.submit}
@@ -158,7 +170,7 @@ export const BrowseCard: React.FC = () => {
           <div className="subject__hide">
             {local.show_answer && (
               <>
-                <button className="btn-info" onClick={sendData}>
+                <button className="btn-info" onClick={getData}>
                   {RenderMessage().general.next}
                 </button>
                 <h2>

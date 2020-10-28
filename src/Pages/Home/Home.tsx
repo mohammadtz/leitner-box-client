@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect } from "react";
 import { LandingLayout } from "../../Layouts/Landing/LandingLayout";
 
 export const Home = () => {

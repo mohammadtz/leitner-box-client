@@ -63,7 +63,7 @@ export const SignUpCard = () => {
           password: local.password,
         },
       });
-      if (res && res.data && res.status === 200) {
+      if (res.status === 200) {
         toast(RenderMessage().message.success_register, { type: "success" });
         const resLogin = await sendRequest({
           url: "/user/login",
@@ -74,12 +74,8 @@ export const SignUpCard = () => {
           },
         });
         if (resLogin && resLogin.data) {
-          setStore("user", res.data);
-          const count = await GetCount();
-          if (count.data) {
-            context.CountStore = count.data;
-          }
           setStore("user", resLogin.data);
+          context.CountStore = resLogin.data.count;
           history.push("/main/box");
         }
       }

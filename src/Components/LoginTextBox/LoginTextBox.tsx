@@ -8,6 +8,7 @@ interface ILoginTextBox {
   value?: string | number | readonly string[];
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
+  autoFocus?: boolean;
 }
 
 export const LoginTextBox = (props: ILoginTextBox) => {
@@ -34,6 +35,7 @@ export const LoginTextBox = (props: ILoginTextBox) => {
         value={props.value}
         onChange={props.onChange}
         name={props.name}
+        autoFocus={props.autoFocus}
       />
       {renderShowPassword()}
     </div>

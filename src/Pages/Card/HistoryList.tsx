@@ -35,9 +35,6 @@ export const HistoryList = () => {
       ref.refresh = true;
       const res = await sendRequest({
         url: `/cards/${item._id}`,
-        params: {
-          success: "3",
-        },
         method: "PUT",
         data: {
           front: item.front,
