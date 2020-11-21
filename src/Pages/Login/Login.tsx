@@ -1,7 +1,6 @@
 import React from "react";
 import "./Login.scss";
 import { LoginContainer } from "./Helper/LoginContainer";
-import { RenderMessage } from "../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
 import { getStore } from "../../Helper";
 
@@ -11,14 +10,14 @@ export const Login = (props: any) => {
   return (
     <div className="login">
       <LoginContainer type={Number(props.match.params.type)} />
-      <button className="back-to-home" onClick={() => history.push("/home")}>
+      {/* <button className="back-to-home" onClick={() => history.push("/home")}>
         <i
           className={
             getStore("lang") === "fa" ? "fa fa-arrow-right" : "fa fa-arrow-left"
           }
         ></i>
         <span>{RenderMessage().sign_in.back_to_home}</span>
-      </button>
+      </button> */}
     </div>
   );
 };

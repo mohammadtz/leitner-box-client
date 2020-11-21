@@ -9,7 +9,9 @@
     "submit":"Submit",
     "answer":"answer",
     "next":"Next",
-    "question":"Question"
+    "question":"Question",
+    "delete":"delete",
+    "operation":"operation"
   },
   "path": {
     "home": "Home",

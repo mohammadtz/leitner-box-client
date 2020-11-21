@@ -8,9 +8,10 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { About, Home, Login } from "./Pages";
+import { Login } from "./Pages";
 import { MainLayout } from "./Layouts/Main/MainLayout";
 import { useObserver } from "mobx-react-lite";
+import './Components/style.scss';
 
 const store = require("store");
 
@@ -21,8 +22,8 @@ function App() {
       <div className="App" dir={store.get("lang") === "fa" ? "rtl" : "ltr"}>
         <Router>
           <Switch>
-            <Route key={"home"} path="/home/:lang?" exact component={Home} />
-            <Route key={"about"} path="/about/:lang?" exact component={About} />
+            {/* <Route key={"home"} path="/home/:lang?" exact component={Home} />
+            <Route key={"about"} path="/about/:lang?" exact component={About} /> */}
             <Route key={"login"} path="/login/:type?" exact component={Login} />
             <Route
               key={"main"}
@@ -30,7 +31,7 @@ function App() {
               exact
               component={MainLayout}
             />
-            <Redirect to={"/home"} />
+            <Redirect to={"/login"} />
           </Switch>
         </Router>
       </div>

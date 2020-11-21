@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { useLocalStore, useObserver } from "mobx-react-lite";
-import { GetCount, sendRequest, setStore } from "../../../Helper";
+import { sendRequest, setStore } from "../../../Helper";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../../Store";

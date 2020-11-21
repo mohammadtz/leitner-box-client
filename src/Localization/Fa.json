@@ -9,7 +9,9 @@
     "submit":"ثبت",
     "answer":"پاسخ",
     "next":"بعدی",
-    "question":"سوال"
+    "question":"سوال",
+    "delete":"حذف",
+    "operation":"عملیات"
   },
   "path": {
     "home": "صفحه اصلی",

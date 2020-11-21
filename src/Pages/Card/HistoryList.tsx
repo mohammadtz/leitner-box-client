@@ -1,9 +1,10 @@
+import { AxiosResponse } from "axios";
 import { toJS } from "mobx";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Button } from "../../Components/Button/Button";
 import { Table } from "../../Components/Table/Table";
-import { GetCount, sendRequest } from "../../Helper";
+import { GetCount, ICount, sendRequest, setStore } from "../../Helper";
 import { RenderMessage } from "../../Localization/RenderMessage";
 import { StoreContext } from "../../Store";
 import { ICard } from "../../Types";
@@ -26,9 +27,20 @@ export const HistoryList = () => {
     for (let i = 0; i < res.data.length; i++) {
       local.visibles.push(false);
     }
-    console.log(toJS(local.visibles));
+
+    if (res.status === 200) {
+      const count: AxiosResponse<ICount> = await sendRequest({
+        url: "/cards/count",
+      });
+      if (count.data) {
+        setStore("count", count.data);
+        context.CountStore = count.data;
+      }
+    }
+
     return res;
   };
+
   const backToBox = async (item: ICard, ref: { refresh: boolean }) => {
     console.log(toJS(item));
     try {
@@ -52,6 +64,25 @@ export const HistoryList = () => {
       // ref.refresh = false;
     }
   };
+
+  const deleteCard = async (item: ICard, ref: { refresh: boolean }) => {
+    try {
+      ref.refresh = true;
+      const res = await sendRequest({
+        url: `/cards/${item._id}`,
+        method: "delete",
+      });
+      if (res.status === 200) {
+        const count = await GetCount();
+        context.CountStore = count.data;
+        getCardsHistory();
+      }
+    } catch (error) {
+    } finally {
+      // ref.refresh = false;
+    }
+  };
+
   return useObserver(() => (
     <Table
       dataSource={getCardsHistory}
@@ -77,16 +108,29 @@ export const HistoryList = () => {
           },
         },
         {
+          caption: RenderMessage().general.operation,
           itemRender: (item, index, ref) => {
             return (
-              <Button
-                type="text"
-                onClick={() => {
-                  backToBox(item, ref);
-                }}
-              >
-                {RenderMessage().pages.card.back_to_box}
-              </Button>
+              <>
+                <Button
+                  type="text"
+                  onClick={() => {
+                    backToBox(item, ref);
+                  }}
+                >
+                  {RenderMessage().pages.card.back_to_box}
+                </Button>
+                <Button
+                  type="text"
+                  onClick={() => {
+                    deleteCard(item, ref);
+                  }}
+                  color="danger"
+                  className="ms-2"
+                >
+                  {RenderMessage().general.delete}
+                </Button>
+              </>
             );
           },
           width: 200,
