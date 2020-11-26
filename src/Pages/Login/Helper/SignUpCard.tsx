@@ -4,13 +4,11 @@ import { RenderMessage } from "../../../Localization/RenderMessage";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import { sendRequest, setStore } from "../../../Helper";
-import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../../Store";
 
 export const SignUpCard = () => {
   const context = useContext(StoreContext);
-  const history = useHistory();
   const signUp = {
     username: "",
     email: "",
@@ -18,6 +16,7 @@ export const SignUpCard = () => {
     password: "",
     reTypePass: "",
   };
+
   const local = useLocalStore(() => signUp);
   const handleChange = (name: string, value: any) => {
     switch (name) {

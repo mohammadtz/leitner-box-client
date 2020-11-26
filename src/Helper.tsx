@@ -1,6 +1,5 @@
 import Axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
-import { RenderMessage } from "./Localization/RenderMessage";
 import { IUserData } from "./Types";
 
 const store = require("store");
