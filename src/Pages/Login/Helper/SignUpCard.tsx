@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useContext } from "react";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { LoginTextBox } from "../../../Components/LoginTextBox/LoginTextBox";
@@ -27,7 +28,13 @@ export const SignUpCard = () => {
         local.email = value;
         break;
       case "mobile":
-        local.mobile = value;
+        if (
+          value.length < 12 &&
+          value.match(/[0-9]/g) &&
+          value.split("")[0] == 0
+        ) {
+          local.mobile = value;
+        }
         break;
       case "password":
         local.password = value;
@@ -76,7 +83,7 @@ export const SignUpCard = () => {
         if (resLogin && resLogin.data) {
           setStore("user", resLogin.data);
           context.CountStore = resLogin.data.count;
-          history.push("/main/box");
+          window.location.href = "/main/box";
         }
       }
     } catch (error) {
@@ -116,6 +123,7 @@ export const SignUpCard = () => {
         value={local.mobile}
         onChange={(e) => handleChange("mobile", e.target.value)}
         name={"mobile"}
+        max={11}
       />
       <LoginTextBox
         icon="fa fa-key"

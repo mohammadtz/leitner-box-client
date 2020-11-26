@@ -78,12 +78,7 @@ export const sendRequest = async ({
     return res;
   } catch (error) {
     console.log(error.response);
-    showLog &&
-      toast(
-        error.response?.data.message ||
-          RenderMessage().message.serverـconnectionـerror,
-        { type: "error" }
-      );
+    showLog && toast(error.response?.data.message, { type: "error" });
     throw error.response;
   }
 };

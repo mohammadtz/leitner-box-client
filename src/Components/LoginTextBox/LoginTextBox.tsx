@@ -9,6 +9,7 @@ interface ILoginTextBox {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   autoFocus?: boolean;
+  max?: string | number;
 }
 
 export const LoginTextBox = (props: ILoginTextBox) => {
@@ -36,6 +37,7 @@ export const LoginTextBox = (props: ILoginTextBox) => {
         onChange={props.onChange}
         name={props.name}
         autoFocus={props.autoFocus}
+        max={props.max}
       />
       {renderShowPassword()}
     </div>
