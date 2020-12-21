@@ -4,14 +4,16 @@
     "placeholder": "لطفا {0} را وارد کنید",
     "required_msg": "فیلد های الزامی پر نشده اند",
     "save_success": "ذخیره اطلاعات با موفقیت انجام شد",
-    "yes":"بلی",
-    "no":"خیر",
-    "submit":"ثبت",
-    "answer":"پاسخ",
-    "next":"بعدی",
-    "question":"سوال",
-    "delete":"حذف",
-    "operation":"عملیات"
+    "yes": "بلی",
+    "no": "خیر",
+    "submit": "ثبت",
+    "answer": "پاسخ",
+    "next": "بعدی",
+    "question": "سوال",
+    "delete": "حذف",
+    "operation": "عملیات",
+    "box_number": "شماره جعبه",
+    "create_date": "تاریخ ایجاد"
   },
   "path": {
     "home": "صفحه اصلی",
@@ -35,6 +37,7 @@
       "account": "حساب کاربری",
       "create_card": "تعریف کارت",
       "card_history": "بایگانی",
+      "card_list": "لیست کارت",
       "exit": "خروج"
     }
   },
@@ -44,11 +47,11 @@
       "card_count": "تعداد کارت: "
     },
     "card": {
-      "show_answer":"نمایش پاسخ",
-      "enter_the_correct_answer":"پاسخ صحیح را وارد کید",
-      "the_answer_is_correct":"پاسخ وارده صحیح است",
-      "the_answer_is_incorrect":"پاسخ وارده نادرست است",
-      "back_to_box":"برگرداندن به  جعبه"
+      "show_answer": "نمایش پاسخ",
+      "enter_the_correct_answer": "پاسخ صحیح را وارد کید",
+      "the_answer_is_correct": "پاسخ وارده صحیح است",
+      "the_answer_is_incorrect": "پاسخ وارده نادرست است",
+      "back_to_box": "برگرداندن به  جعبه"
     }
   },
   "create_card": {

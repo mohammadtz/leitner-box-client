@@ -7,6 +7,7 @@ import { Account } from "../../../Pages/Account/Account";
 import { Home } from "../../../Pages";
 import { removeStore } from "../../../Helper";
 import { BrowseCard } from "../../../Pages/BrowseCard/BrowseCard";
+import { CardList } from "../../../Pages/Card/CardList";
 
 export const MenuList = [
   {
@@ -33,19 +34,26 @@ export const MenuList = [
   {
     key: 4,
     path: "/main/cardList",
+    text: RenderMessage().main.menu.card_list,
+    componets: () => <CardList />,
+    isActice: false,
+  },
+  {
+    key: 5,
+    path: "/main/historyList",
     text: RenderMessage().main.menu.card_history,
     componets: () => <HistoryList />,
     isActice: false,
   },
   {
-    key: 5,
+    key: 6,
     path: "/main/account",
     text: RenderMessage().main.menu.account,
     componets: () => <Account />,
     isActice: false,
   },
   {
-    key: 6,
+    key: 7,
     path: "/home",
     text: RenderMessage().main.menu.exit,
     componets: () => <Home />,

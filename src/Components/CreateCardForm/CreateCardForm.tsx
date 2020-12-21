@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { Img_Close, Img_Loader } from "../../assets/Export";
 import { ICount, sendRequest, setStore } from "../../Helper";
 import { RenderMessage } from "../../Localization/RenderMessage";
 import { StoreContext } from "../../Store";
@@ -17,8 +18,10 @@ const localStore = {
   back_card: {
     title: "back card",
     placeholder: RenderMessage().create_card.back_card_placeholder,
+    tags: [] as any[],
     value: "",
   },
+  loaderVisibility: false,
 };
 
 export const CreateCardForm = () => {
@@ -40,18 +43,39 @@ export const CreateCardForm = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!local.back_card.value || !local.fornt_card.value) {
+    local.back_card.tags.push(local.back_card.value);
+    local.back_card.value = "";
+  };
+
+  const loader = () => (
+    <div className="create-card-form__loader">
+      <img src={Img_Loader} alt="" />
+    </div>
+  );
+
+  const renderTag = (tag: string) => {
+    return (
+      <div className="tag-style">
+        <img src={Img_Close} alt="" height={16} />
+        <span>{tag}</span>
+      </div>
+    );
+  };
+
+  const onClickSubmit = async () => {
+    if (local.back_card.tags.length < 1 || !local.fornt_card.value) {
       return toast(RenderMessage().general.required_msg, {
         type: "error",
       });
     }
     try {
+      local.loaderVisibility = true;
       const res = await sendRequest({
         url: "/cards",
         method: "POST",
         data: {
           front: local.fornt_card.value,
-          back: local.back_card.value,
+          back: local.back_card.tags.join(","),
         },
       });
       if (res.status === 200) {
@@ -66,7 +90,10 @@ export const CreateCardForm = () => {
         local.back_card.value = "";
         return toast(RenderMessage().general.save_success, { type: "success" });
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      local.loaderVisibility = false;
+    }
   };
 
   return useObserver(() => (
@@ -93,9 +120,18 @@ export const CreateCardForm = () => {
             }
           />
           <br />
-          <button>{RenderMessage().create_card.submit}</button>
+          <div className="tag-container">
+            {local.back_card.tags.map((tag) => {
+              return renderTag(tag);
+            })}
+          </div>
+          <button style={{ display: "none" }}></button>
+          <button type="button" onClick={onClickSubmit}>
+            {RenderMessage().create_card.submit}
+          </button>
         </form>
       </div>
+      {local.loaderVisibility && loader()}
     </div>
   ));
 };

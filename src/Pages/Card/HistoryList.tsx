@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AxiosResponse } from "axios";
 import { toJS } from "mobx";
 import { useLocalStore, useObserver } from "mobx-react-lite";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "../../Components/Button/Button";
 import { Table } from "../../Components/Table/Table";
 import { GetCount, ICount, sendRequest, setStore } from "../../Helper";
@@ -20,6 +21,8 @@ const localStore: ILocal = {
 export const HistoryList = () => {
   const context = useContext(StoreContext);
   const local = useLocalStore(() => localStore);
+  const [data, setData] = useState<any[]>();
+
   const getCardsHistory = async () => {
     const res = await sendRequest({
       url: "/cards/history",
@@ -29,6 +32,7 @@ export const HistoryList = () => {
     }
 
     if (res.status === 200) {
+      setData(res.data);
       const count: AxiosResponse<ICount> = await sendRequest({
         url: "/cards/count",
       });
@@ -37,9 +41,11 @@ export const HistoryList = () => {
         context.CountStore = count.data;
       }
     }
-
-    return res;
   };
+
+  useEffect(() => {
+    getCardsHistory();
+  }, []);
 
   const backToBox = async (item: ICard, ref: { refresh: boolean }) => {
     console.log(toJS(item));
@@ -85,7 +91,7 @@ export const HistoryList = () => {
 
   return useObserver(() => (
     <Table
-      dataSource={getCardsHistory}
+      dataSource={data}
       columns={[
         {
           dataField: "front",

@@ -4,14 +4,16 @@
     "placeholder": "Please Enter {0}",
     "required_msg": "Required fields are not filled",
     "save_success": "Data storage completed successfully",
-    "yes":"Yes",
-    "no":"No",
-    "submit":"Submit",
-    "answer":"answer",
-    "next":"Next",
-    "question":"Question",
-    "delete":"delete",
-    "operation":"operation"
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit",
+    "answer": "answer",
+    "next": "Next",
+    "question": "Question",
+    "delete": "delete",
+    "operation": "operation",
+    "box_number": "box number",
+    "create_date": "create date"
   },
   "path": {
     "home": "Home",
@@ -34,6 +36,7 @@
       "boxes": "Boxes",
       "account": "Account",
       "create_card": "Create Card",
+      "card_history": "history",
       "card_list": "Card List",
       "exit": "Exit"
     }
@@ -44,11 +47,11 @@
       "card_count": "Card Count: "
     },
     "card": {
-      "show_answer":"Show answer",
-      "enter_the_correct_answer":"Enter the correct answer",
-      "the_answer_is_correct":"The answer is correct",
-      "the_answer_is_incorrect":"The answer is incorrect",
-      "back_to_box":"Back to box"
+      "show_answer": "Show answer",
+      "enter_the_correct_answer": "Enter the correct answer",
+      "the_answer_is_correct": "The answer is correct",
+      "the_answer_is_incorrect": "The answer is incorrect",
+      "back_to_box": "Back to box"
     }
   },
   "create_card": {

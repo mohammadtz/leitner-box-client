@@ -22,6 +22,19 @@ $container-height: 500px;
       justify-content: space-around;
     }
   }
+  &__loader {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.267);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100px;
+    }
+  }
   &__icon {
     position: absolute;
     top: calc(0px - (#{$height_width_icon}/ 2));
@@ -40,9 +53,29 @@ $container-height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
     i {
       color: white;
       font-size: 2rem;
     }
+  }
+}
+
+.tag-container {
+  max-height: 6rem;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+.tag-style {
+  background-color: #e6e6e6;
+  display: inline-flex;
+  align-items: center;
+  padding: 0px 5px;
+  border-radius: 20px;
+  justify-content: flex-start;
+  margin: 5px;
+  span {
+    padding: 0 5px;
   }
 }
