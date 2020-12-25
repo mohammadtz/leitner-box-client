@@ -4,3 +4,44 @@
   align-items: center;
   height: 89vh;
 }
+
+.reports {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .totalView {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  &__card {
+    background: rgb(255, 125, 71);
+    background: linear-gradient(
+      45deg,
+      rgba(255, 125, 71, 1) 0%,
+      rgba(255, 226, 120, 1) 100%
+    );
+    border-radius: 20px;
+    padding: 7px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    &__container {
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      width: 100%;
+      display: flex;
+      &__Child {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        .text {
+          margin-bottom: 0.3rem;
+          margin-top: 0.3rem;
+        }
+      }
+    }
+  }
+}

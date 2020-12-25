@@ -13,7 +13,11 @@
     "delete": "delete",
     "operation": "operation",
     "box_number": "box number",
-    "create_date": "create date"
+    "create_date": "create date",
+    "details": "details",
+    "status": "status",
+    "close": "close",
+    "show_date": "Show Date"
   },
   "path": {
     "home": "Home",
@@ -35,6 +39,7 @@
     "menu": {
       "boxes": "Boxes",
       "account": "Account",
+      "reports": "Reports",
       "create_card": "Create Card",
       "card_history": "history",
       "card_list": "Card List",
@@ -64,5 +69,12 @@
     "cant_null": "{0} cannot be null",
     "success_register": "Registration completed successfully",
     "serverـconnectionـerror": "Server connection error"
+  },
+  "reports": {
+    "total_views": "total views",
+    "correct": "correct",
+    "incorrect": "incorrect",
+    "correct_persent": "correct persent",
+    "incorrect_persent": "incorrect persent"
   }
 }

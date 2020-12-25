@@ -13,7 +13,11 @@
     "delete": "حذف",
     "operation": "عملیات",
     "box_number": "شماره جعبه",
-    "create_date": "تاریخ ایجاد"
+    "create_date": "تاریخ ایجاد",
+    "details": "جزئیات",
+    "status": "وضعیت",
+    "close": "بستن",
+    "show_date": "تاریخ مشاهده"
   },
   "path": {
     "home": "صفحه اصلی",
@@ -35,6 +39,7 @@
     "menu": {
       "boxes": "جعبه ها",
       "account": "حساب کاربری",
+      "reports": "گزارشات",
       "create_card": "تعریف کارت",
       "card_history": "بایگانی",
       "card_list": "لیست کارت",
@@ -64,5 +69,12 @@
     "cant_null": "{0} نمی تواند خالی باشد",
     "success_register": "ثبت نام با موفقیت انجام شد",
     "serverـconnectionـerror": "خطا در ارتباط با سرور"
+  },
+  "reports": {
+    "total_views": "تعداد کل نمایش ها",
+    "correct": "صحیح",
+    "incorrect": "نادرست",
+    "correct_persent": "درصد صحیح",
+    "incorrect_persent": "درصد اشتباه"
   }
 }
