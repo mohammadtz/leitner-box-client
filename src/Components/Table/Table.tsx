@@ -13,6 +13,7 @@ interface ITable {
     width?: string | number;
   }[];
   refresh?: (ref: { refresh: boolean }) => void;
+  width?: string | number;
 }
 
 interface ILocalStore {
@@ -31,6 +32,8 @@ export const Table: React.FC<ITable> = (props) => {
   };
 
   const renderRow = () => {
+    console.log(props.dataSource);
+
     return props.dataSource?.map((item, index) => {
       return (
         <tr key={index}>
@@ -51,7 +54,7 @@ export const Table: React.FC<ITable> = (props) => {
 
   return useObserver(() => (
     <>
-      <table className="table">
+      <table className="table" style={{ width: props.width }}>
         <thead>
           <tr>{renderCaption()}</tr>
         </thead>

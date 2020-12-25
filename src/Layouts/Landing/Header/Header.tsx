@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./Header.scss";
 import { RenderMessage } from "../../../Localization/RenderMessage";
 import { useHistory } from "react-router-dom";
 import { getStore } from "../../../Helper";
+import moment from "moment-jalaali";
 
 export type RouteType = {
   src: string;
@@ -17,13 +17,20 @@ interface IHeaderProps {
 }
 
 export const Header = (props: IHeaderProps) => {
+  let day = moment(Date.now()).format("jYYYY/jMM/jDD HH:mm:ss");
+  const [today, setToday] = useState(day);
   const history = useHistory();
-  const renderNavItem = () =>
-    props.Route.map((item) => (
-      <div key={item.key}>
-        <Link to={item.src}>{item.text}</Link>
-      </div>
-    ));
+  // const renderNavItem = () =>
+  //   props.Route.map((item) => (
+  //     <div key={item.key}>
+  //       <Link to={item.src}>{item.text}</Link>
+  //     </div>
+  //   ));
+
+  setInterval(() => {
+    setToday(moment(Date.now()).format("jYYYY/jMM/jDD HH:mm:ss"));
+  }, 1000);
+
   return (
     <header>
       <div>
@@ -31,7 +38,8 @@ export const Header = (props: IHeaderProps) => {
           {RenderMessage().general.account}
         </button>
       </div>
-      <nav>{renderNavItem()}</nav>
+      <span dir="ltr">{today}</span>
+      {/* <nav>{renderNavItem()}</nav> */}
     </header>
   );
 };

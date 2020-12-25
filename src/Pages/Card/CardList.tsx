@@ -56,28 +56,27 @@ export const CardList = () => {
     getCardsHistory();
   }, []);
 
-  const deleteCard = async (item: ICard, ref: { refresh: boolean }) => {
+  const deleteCard = async (item: ICard) => {
     setLoader(true);
     try {
-      ref.refresh = true;
       const res = await sendRequest({
         url: `/cards/${item._id}`,
         method: "delete",
       });
       if (res.status === 200) {
+        getCardsHistory();
         const count = await GetCount();
         context.CountStore = count.data;
-        getCardsHistory();
       }
     } catch (error) {
+      console.log("error", error);
     } finally {
-      ref.refresh = false;
       setLoader(false);
     }
   };
 
   return useObserver(() => (
-    <>
+    <div style={{ width: "90%" }}>
       <Table
         dataSource={data}
         columns={[
@@ -86,8 +85,14 @@ export const CardList = () => {
             caption: RenderMessage().general.question,
           },
           {
-            dataField: "box_number",
             caption: RenderMessage().general.box_number,
+            itemRender: (item) => {
+              if (item.box_number === 6) {
+                return RenderMessage().main.menu.card_history;
+              } else {
+                return item.box_number;
+              }
+            },
           },
           {
             caption: RenderMessage().general.create_date,
@@ -122,7 +127,7 @@ export const CardList = () => {
                 <Button
                   type="text"
                   onClick={() => {
-                    deleteCard(item, ref);
+                    deleteCard(item);
                   }}
                   color="danger"
                   className="ms-2"
@@ -136,6 +141,6 @@ export const CardList = () => {
         ]}
       ></Table>
       <Loader visible={loader} />
-    </>
+    </div>
   ));
 };

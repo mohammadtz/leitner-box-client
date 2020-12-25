@@ -85,63 +85,67 @@ export const HistoryList = () => {
       }
     } catch (error) {
     } finally {
-      // ref.refresh = false;
+      ref.refresh = false;
     }
   };
 
   return useObserver(() => (
-    <Table
-      dataSource={data}
-      columns={[
-        {
-          dataField: "front",
-          caption: RenderMessage().general.question,
-        },
-        {
-          caption: RenderMessage().general.answer,
-          itemRender: (item, index) => {
-            return (
-              <Button
-                type="text"
-                color={local.visibles[index] ? undefined : "danger"}
-                onClick={() => (local.visibles[index] = !local.visibles[index])}
-              >
-                {local.visibles[index]
-                  ? item.back
-                  : RenderMessage().pages.card.show_answer}
-              </Button>
-            );
+    <div style={{ width: "90%" }}>
+      <Table
+        dataSource={data}
+        columns={[
+          {
+            dataField: "front",
+            caption: RenderMessage().general.question,
           },
-        },
-        {
-          caption: RenderMessage().general.operation,
-          itemRender: (item, index, ref) => {
-            return (
-              <>
+          {
+            caption: RenderMessage().general.answer,
+            itemRender: (item, index) => {
+              return (
                 <Button
                   type="text"
-                  onClick={() => {
-                    backToBox(item, ref);
-                  }}
+                  color={local.visibles[index] ? undefined : "danger"}
+                  onClick={() =>
+                    (local.visibles[index] = !local.visibles[index])
+                  }
                 >
-                  {RenderMessage().pages.card.back_to_box}
+                  {local.visibles[index]
+                    ? item.back
+                    : RenderMessage().pages.card.show_answer}
                 </Button>
-                <Button
-                  type="text"
-                  onClick={() => {
-                    deleteCard(item, ref);
-                  }}
-                  color="danger"
-                  className="ms-2"
-                >
-                  {RenderMessage().general.delete}
-                </Button>
-              </>
-            );
+              );
+            },
           },
-          width: 200,
-        },
-      ]}
-    ></Table>
+          {
+            caption: RenderMessage().general.operation,
+            itemRender: (item, index, ref) => {
+              return (
+                <>
+                  <Button
+                    type="text"
+                    onClick={() => {
+                      backToBox(item, ref);
+                    }}
+                  >
+                    {RenderMessage().pages.card.back_to_box}
+                  </Button>
+                  <Button
+                    type="text"
+                    onClick={() => {
+                      deleteCard(item, ref);
+                    }}
+                    color="danger"
+                    className="ms-2"
+                  >
+                    {RenderMessage().general.delete}
+                  </Button>
+                </>
+              );
+            },
+            width: 200,
+          },
+        ]}
+      ></Table>
+    </div>
   ));
 };

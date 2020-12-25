@@ -3,11 +3,11 @@ import { RenderMessage } from "../../../Localization/RenderMessage";
 import { Box } from "../../../Pages/Box/Box";
 import { CreatedCard } from "../../../Pages/Card/CreatedCard";
 import { HistoryList } from "../../../Pages/Card/HistoryList";
-import { Account } from "../../../Pages/Account/Account";
 import { Home } from "../../../Pages";
 import { removeStore } from "../../../Helper";
 import { BrowseCard } from "../../../Pages/BrowseCard/BrowseCard";
 import { CardList } from "../../../Pages/Card/CardList";
+import { Reports } from "../../../Pages/Card/Reports";
 
 export const MenuList = [
   {
@@ -47,9 +47,9 @@ export const MenuList = [
   },
   {
     key: 6,
-    path: "/main/account",
-    text: RenderMessage().main.menu.account,
-    componets: () => <Account />,
+    path: "/main/reports",
+    text: RenderMessage().main.menu.reports,
+    componets: () => <Reports />,
     isActice: false,
   },
   {
