@@ -1,3 +1,5 @@
+@import "./variables";
+
 @font-face {
   font-family: Vazir;
   src: url("./Fonts/Vazir/Farsi-Digits/Vazir-FD.eot");
@@ -92,4 +94,48 @@ button {
   &:hover {
     background-color: rgb(211, 211, 211);
   }
+}
+
+.me-1 {
+  margin-inline-end: 0.25rem;
+}
+
+.visible {
+  transition: 0.4s all;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hide {
+  transition: 0.4s all;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.danger {
+  color: $danger-color;
+}
+
+.success {
+  color: $base-dark-green;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

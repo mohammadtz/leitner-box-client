@@ -34,15 +34,15 @@ export const CreateCardForm = () => {
         local.fornt_card.value = value;
         break;
       case local.back_card.title:
-        local.back_card.value = value;
+        if (!value.includes(",")) local.back_card.value = value;
         break;
       default:
         break;
     }
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     local.back_card.tags.push(local.back_card.value);
     local.back_card.value = "";
   };
@@ -53,17 +53,25 @@ export const CreateCardForm = () => {
     </div>
   );
 
-  const renderTag = (tag: string) => {
+  const renderTag = (tag: string, index: number) => {
     return (
       <div className="tag-style">
-        <img src={Img_Close} alt="" height={16} />
+        <img
+          src={Img_Close}
+          alt=""
+          height={16}
+          onClick={() => local.back_card.tags.splice(index, 1)}
+        />
         <span>{tag}</span>
       </div>
     );
   };
 
   const onClickSubmit = async () => {
-    if (local.back_card.tags.length < 1 || !local.fornt_card.value) {
+    if (
+      (local.back_card.tags.length < 1 && !local.fornt_card.value) ||
+      !local.fornt_card.value
+    ) {
       return toast(RenderMessage().general.required_msg, {
         type: "error",
       });
@@ -75,7 +83,10 @@ export const CreateCardForm = () => {
         method: "POST",
         data: {
           front: local.fornt_card.value,
-          back: local.back_card.tags.join(","),
+          back:
+            local.back_card.tags.length > 0
+              ? local.back_card.tags.join(",")
+              : local.back_card.value,
         },
       });
       if (res.status === 200) {
@@ -88,6 +99,7 @@ export const CreateCardForm = () => {
         }
         local.fornt_card.value = "";
         local.back_card.value = "";
+        local.back_card.tags = [];
         return toast(RenderMessage().general.save_success, { type: "success" });
       }
     } catch (error) {
@@ -118,11 +130,16 @@ export const CreateCardForm = () => {
             onChange={(e) =>
               handleValueChanged(local.back_card.title, e.target.value)
             }
+            onKeyDown={(e) => {
+              if (e.key === ",") {
+                return onSubmit();
+              }
+            }}
           />
           <br />
           <div className="tag-container">
-            {local.back_card.tags.map((tag) => {
-              return renderTag(tag);
+            {local.back_card.tags.map((tag, index) => {
+              return renderTag(tag, index);
             })}
           </div>
           <button style={{ display: "none" }}></button>

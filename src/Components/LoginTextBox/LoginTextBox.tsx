@@ -10,6 +10,7 @@ interface ILoginTextBox {
   name?: string;
   autoFocus?: boolean;
   max?: string | number;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const LoginTextBox = (props: ILoginTextBox) => {
@@ -38,6 +39,7 @@ export const LoginTextBox = (props: ILoginTextBox) => {
         name={props.name}
         autoFocus={props.autoFocus}
         max={props.max}
+        onKeyDown={props.onKeyDown}
       />
       {renderShowPassword()}
     </div>
